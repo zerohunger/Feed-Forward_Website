@@ -49,7 +49,7 @@ export default function App() {
         <NumberAchivements />
         <Feedbacks />
         <InstitueFaith />
-        {/* <PartnerWithVignam /> */}
+        <PartnerWithVignam /> 
         {/* <Footer /> */}
       </Container>
     </MantineProvider>

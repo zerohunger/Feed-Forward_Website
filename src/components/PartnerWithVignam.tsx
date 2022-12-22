@@ -2,19 +2,17 @@ import { Container, createStyles, Title, Text } from "@mantine/core";
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
-    paddingRight: theme.spacing.xl * 5,
-    paddingLeft: theme.spacing.xl * 5,
-    paddingTop: theme.spacing.xl * 4,
-    paddingBottom: theme.spacing.xl * 4,
     backgroundColor: theme.colors.blue[0],
-    alignItems: "center",
-    justifyItems: "center",
-    justifyContent: "center",
-    [theme.fn.smallerThan("md")]: {
-      paddingRight: theme.spacing.xl * 2,
-      paddingLeft: theme.spacing.xl * 2,
-      paddingTop: theme.spacing.xl,
-      paddingBottom: theme.spacing.xl,
+    paddingRight: theme.spacing.xl * 2,
+    paddingLeft: theme.spacing.xl * 2,
+    paddingTop: theme.spacing.xl,
+    paddingBottom: theme.spacing.xl,
+
+    [theme.fn.largerThan("md")]: {
+      paddingRight: theme.spacing.xl * 5,
+      paddingLeft: theme.spacing.xl * 5,
+      paddingTop: theme.spacing.xl * 4,
+      paddingBottom: theme.spacing.xl * 4,
     },
   },
 
@@ -23,24 +21,25 @@ const useStyles = createStyles((theme) => ({
     fontWeight: 600,
     letterSpacing: "-2.5%",
     lineHeight: "60px",
-    textAlign: "center",
-    fontSize: 48,
-    [theme.fn.smallerThan("sm")]: {
-      fontSize: 28,
-      textAlign: "left",
+    fontSize: 28,
+    textAlign: "left",
+
+    [theme.fn.largerThan("md")]: {
+      fontSize: 48,
+      textAlign: "center",
     },
   },
 
   subtitle: {
     fontFamily: `Greycliff CF, ${theme.fontFamily}`,
     fontWeight: 400,
-    textAlign: "center",
-    fontSize: 28,
-    marginTop: 20,
-    lineHeight: "42px",
-    [theme.fn.smallerThan("sm")]: {
+    fontSize: 22,
+    textAlign: "left",
+    [theme.fn.largerThan("md")]: {
+      textAlign: "center",
       fontSize: 28,
-      textAlign: "left",
+      marginTop: 20,
+      lineHeight: "42px",
     },
   },
 
