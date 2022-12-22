@@ -143,7 +143,6 @@ export function Footer() {
     <footer className={classes.footer}>
       <Container fluid={true} className={classes.inner}>
         <div className={classes.logo}>
-          {/* <MantineLogo size={30} /> */}
           <Image
             height={80}
             width={80}
@@ -229,11 +228,11 @@ const DATA: {
     title: "Contact US",
     links: [
       {
-        label: "+919650488030",
+        label: "+91-9650488030",
         link: "",
       },
       {
-        label: "+918561057510",
+        label: "+91-8561057510",
         link: "",
       },
       {

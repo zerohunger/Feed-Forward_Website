@@ -42,15 +42,15 @@ export default function App() {
           paddingTop: 20,
         }}
       >
-        {/* <AppHeader /> */}
+        <AppHeader />
         <Hero />
-        <Offering />
-        <Features />
-        <NumberAchivements />
-        <Feedbacks />
-        <InstitueFaith />
-        <PartnerWithVignam /> 
-        <Footer />
+        {/* <Offering /> */}
+        {/* <Features /> */}
+        {/* <NumberAchivements /> */}
+        {/* <Feedbacks /> */}
+        {/* <InstitueFaith /> */}
+        {/* <PartnerWithVignam />  */}
+        {/* <Footer /> */}
       </Container>
     </MantineProvider>
   );

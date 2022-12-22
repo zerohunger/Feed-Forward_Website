@@ -9,22 +9,36 @@ import {
   List,
   ThemeIcon,
 } from "@mantine/core";
-import { IconCheck } from "@tabler/icons";
 
 const useStyles = createStyles((theme) => ({
   inner: {
     display: "flex",
     justifyContent: "space-evenly",
-    paddingTop: theme.spacing.xl * 4,
-    paddingBottom: theme.spacing.xl * 4,
-    paddingLeft: theme.spacing.xl * 4,
-    paddingRight: theme.spacing.xl * 4,
+
+    padding: theme.spacing.xl * 4,
+
+    [theme.fn.smallerThan("sm")]: {
+      paddingTop: theme.spacing.xl * 2,
+      paddingBottom: theme.spacing.xl * 2,
+      paddingLeft: theme.spacing.lg,
+      paddingRight: theme.spacing.lg,
+    },
   },
 
   content: {
-    [theme.fn.largerThan("md")]: {
+    [theme.fn.largerThan("lg")]: {
       maxWidth: 600,
       minWidth: 500,
+    },
+
+    [theme.fn.smallerThan("lg")]: {
+      maxWidth: "60%",
+      minWidth: "60%",
+    },
+
+    [theme.fn.smallerThan("sm")]: {
+      maxWidth: "100%",
+      minWidth: "100%",
     },
   },
 
@@ -34,6 +48,12 @@ const useStyles = createStyles((theme) => ({
     fontSize: 62,
     lineHeight: "75px",
     fontWeight: 900,
+
+    [theme.fn.smallerThan("lg")]: {
+      fontSize: 32,
+      lineHeight: "45px",
+      fontWeight: 900,
+    },
   },
 
   image: {
@@ -42,7 +62,14 @@ const useStyles = createStyles((theme) => ({
     maxHeight: 460,
     backgroundColor: theme.colors.red[5],
     borderRadius: 18,
-    [theme.fn.smallerThan("md")]: {
+
+    [theme.fn.smallerThan("lg")]: {
+      maxWidth: 300,
+      minWidth: 300,
+      maxHeight: 300,
+    },
+
+    [theme.fn.smallerThan("sm")]: {
       display: "none",
     },
   },
@@ -51,11 +78,28 @@ const useStyles = createStyles((theme) => ({
     position: "relative",
     borderRadius: theme.radius.sm,
     color: "#3174F3",
+
+    [theme.fn.smallerThan("lg")]: {
+      fontSize: 32,
+    },
   },
 
   requestDemoButton: {
     marginTop: 30,
     backgroundColor: theme.primaryColor,
+  },
+
+  description: {
+    fontSize: 20,
+    lineHeight: "30px",
+    fontWeight: 400,
+    paddingTop: 10,
+
+    [theme.fn.smallerThan("lg")]: {
+      fontSize: 15,
+      lineHeight: "25px",
+      paddingTop: 2,
+    },
   },
 }));
 
@@ -70,16 +114,7 @@ export function Hero() {
               Make your School <br></br>
               <span className={classes.highlight}>SMARTER</span>
             </Title>
-            <Text
-              color="dimmed"
-              mt="md"
-              style={{
-                fontSize: 20,
-                lineHeight: "30px",
-                fontWeight: 400,
-                paddingTop: 10,
-              }}
-            >
+            <Text color="dimmed" mt="md" className={classes.description}>
               Vignam help schools to transform their classroom teaching, set up
               their practical labs infrastructure and help school’s to digitise
               their existing management practices

@@ -7,9 +7,8 @@ import {
   Paper,
   Transition,
   Title,
-  Image,
   Button,
-  Space,
+  Image,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 
@@ -32,6 +31,10 @@ const useStyles = createStyles((theme) => ({
     borderTopWidth: 0,
     overflow: "hidden",
 
+    display: "flex",
+    flexDirection: "column",
+    padding: 20,
+
     [theme.fn.largerThan("sm")]: {
       display: "none",
     },
@@ -42,6 +45,11 @@ const useStyles = createStyles((theme) => ({
     justifyContent: "space-between",
     alignItems: "center",
     height: "100%",
+  },
+
+  headerInnerContainer: {
+    display: "flex",
+    justifyContent: "space-between",
   },
 
   links: {
@@ -62,18 +70,12 @@ const useStyles = createStyles((theme) => ({
     padding: "8px 12px",
     borderRadius: theme.radius.sm,
     textDecoration: "none",
-    color:
-      theme.colorScheme === "dark"
-        ? theme.colors.dark[0]
-        : theme.colors.gray[7],
+    color: theme.colors.gray[7],
     fontSize: theme.fontSizes.sm,
     fontWeight: 500,
 
     "&:hover": {
-      backgroundColor:
-        theme.colorScheme === "dark"
-          ? theme.colors.dark[6]
-          : theme.colors.gray[0],
+      backgroundColor: theme.colors.gray[0],
     },
 
     [theme.fn.smallerThan("sm")]: {
@@ -82,31 +84,18 @@ const useStyles = createStyles((theme) => ({
     },
   },
 
-  linkActive: {
-    "&, &:hover": {
-      backgroundColor: theme.fn.variant({
-        variant: "light",
-        color: theme.primaryColor,
-      }).background,
-      color: theme.fn.variant({ variant: "light", color: theme.primaryColor })
-        .color,
-    },
-  },
-
   optionButton: {
     color: theme.colors.dark[3],
   },
+
   demoButton: {
     color: theme.white,
     borderRadius: 8,
     minHeight: "46px",
+    textAlign: "center",
     backgroundColor: "#3174F3",
   },
 }));
-
-interface HeaderResponsiveProps {
-  links: { link: string; label: string }[];
-}
 
 export function AppHeader() {
   const [opened, { toggle, close }] = useDisclosure(false);
@@ -129,22 +118,42 @@ export function AppHeader() {
   const { classes, cx } = useStyles();
 
   const items = options.map((link) => (
-    <Button
-      variant={link.isDemoButton ? "filled" : "subtle"}
-      className={link.isDemoButton ? classes.demoButton : classes.optionButton}
-    >
-      {link.label}
-    </Button>
+    <div>
+      {link.isDemoButton === true && (
+        <Button className={classes.demoButton}> Request Demo </Button>
+      )}{" "}
+      {link.isDemoButton === false && (
+        <a
+          key={link.label}
+          // href={link.link}
+          className={classes.link}
+          onClick={(event) => {
+            event.preventDefault();
+          }}
+        >
+          {link.label}
+        </a>
+      )}
+    </div>
   ));
 
   return (
     <Header height={HEADER_HEIGHT} className={classes.root}>
-      <Container size="xl">
-        {/* <MantineLogo size={28} /> */}
+      <Container
+        size="xl"
+        fluid={true}
+        className={classes.headerInnerContainer}
+      >
+        <Group>
+          <Image
+            height={40}
+            width={40}
+            style={{ backgroundColor: "royalblue" }}
+          ></Image>
+          <Title>Vignam</Title>
+        </Group>
 
         <Group position="apart">
-          <Title>Vignam</Title>
-
           <Group spacing={5} className={classes.links}>
             {items}
           </Group>
@@ -156,9 +165,14 @@ export function AppHeader() {
           size="sm"
         />
 
-        <Transition transition="pop-top-right" duration={200} mounted={opened}>
+        <Transition transition="scale-y" duration={200} mounted={opened}>
           {(styles) => (
-            <Paper className={classes.dropdown} withBorder style={styles}>
+            <Paper
+              className={classes.dropdown}
+              withBorder
+              shadow="xl"
+              style={styles}
+            >
               {items}
             </Paper>
           )}
