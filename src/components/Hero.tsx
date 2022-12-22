@@ -17,16 +17,14 @@ const useStyles = createStyles((theme) => ({
     justifyContent: "space-evenly",
     paddingTop: theme.spacing.xl * 4,
     paddingBottom: theme.spacing.xl * 4,
+    paddingLeft: theme.spacing.xl * 4,
+    paddingRight: theme.spacing.xl * 4,
   },
 
   content: {
-    maxWidth: 600,
-    minWidth: 500,
-
-    [theme.fn.smallerThan("md")]: {
-      maxWidth: "100%",
-      marginLeft: 10,
-      padding: 20,
+    [theme.fn.largerThan("md")]: {
+      maxWidth: 600,
+      minWidth: 500,
     },
   },
 
@@ -65,7 +63,7 @@ export function Hero() {
   const { classes } = useStyles();
   return (
     <div>
-      <Container size="xl" fluid={true}>
+      <Container fluid={true}>
         <div className={classes.inner}>
           <div className={classes.content}>
             <Title className={classes.title}>
