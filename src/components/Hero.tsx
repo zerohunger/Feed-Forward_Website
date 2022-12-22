@@ -121,7 +121,10 @@ export function Hero() {
               Request Demo
             </Button>
           </div>
-          <Image className={classes.image} />
+          <Image
+            src={require("../assets/images/Heading.png")}
+            className={classes.image}
+          />
         </div>
       </Container>
     </div>

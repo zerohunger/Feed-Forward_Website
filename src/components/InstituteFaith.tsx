@@ -88,14 +88,14 @@ export function InstitueFaith() {
         <Space></Space>
         <Group>
           <Image
-            src={"/assets/images/IITR.png"}
+            src={require("../assets/images/IITR.png")}
             withPlaceholder
             style={{ backgroundColor: "floralwhite" }}
             height={120}
             width={120}
           />
           <Image
-            src={"/assets/images/iHUB.png"}
+            src={require("../assets/images/iHUB.png")}
             withPlaceholder
             style={{ backgroundColor: "palegoldenrod" }}
             height={120}

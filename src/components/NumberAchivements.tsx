@@ -4,6 +4,7 @@ import {
   Container,
   createStyles,
   Group,
+  Overlay,
   Stack,
   Title,
 } from "@mantine/core";
@@ -92,7 +93,7 @@ function Achivement(props: {
 }
 
 export function NumberAchivements() {
-  const { classes } = useStyles();
+  const { classes, theme } = useStyles();
   return (
     <Container fluid={true} className={classes.wrapper}>
       <Container fluid={true} className={classes.innerContainer}>

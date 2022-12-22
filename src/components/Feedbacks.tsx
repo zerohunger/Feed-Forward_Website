@@ -120,11 +120,13 @@ function FeedbackCard(props: FeedbackCardProps) {
         </div>
 
         <Image
+          height={40}
+          width={"70%"}
+          fit="fill"
           style={{
-            backgroundColor: "darkturquoise",
-            minHeight: 40,
             marginTop: 12,
           }}
+          src={require("../assets/images/stars.png")}
         ></Image>
       </Group>
     </Paper>

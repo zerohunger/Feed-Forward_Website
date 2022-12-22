@@ -144,9 +144,9 @@ export function Footer() {
       <Container fluid={true} className={classes.inner}>
         <div className={classes.logo}>
           <Image
-            height={80}
-            width={80}
-            style={{ backgroundColor: "royalblue" }}
+            height={50}
+            width={50}
+            src={require("../assets/images/LOGO.png")}
           ></Image>
           <Text color="dimmed" className={classes.description}>
             28 , SSG Majesty Mall , Plot No. 2 Road No. 43, Guru Harikishan

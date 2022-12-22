@@ -18,6 +18,8 @@ const useStyles = createStyles((theme) => ({
   root: {
     position: "relative",
     zIndex: 1,
+    paddingLeft: 50,
+    paddingRight: 50,
   },
 
   dropdown: {
@@ -148,7 +150,7 @@ export function AppHeader() {
           <Image
             height={40}
             width={40}
-            style={{ backgroundColor: "royalblue" }}
+            src={require("../assets/images/LOGO.png")}
           ></Image>
           <Title>Vignam</Title>
         </Group>
