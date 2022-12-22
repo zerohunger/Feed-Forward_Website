@@ -50,7 +50,7 @@ export default function App() {
         <Feedbacks />
         <InstitueFaith />
         <PartnerWithVignam /> 
-        {/* <Footer /> */}
+        <Footer />
       </Container>
     </MantineProvider>
   );

@@ -4,6 +4,7 @@ import {
   Container,
   ActionIcon,
   Group,
+  Image,
 } from "@mantine/core";
 import {
   IconBrandTwitter,
@@ -24,12 +25,12 @@ const useStyles = createStyles((theme) => ({
   },
 
   logo: {
-    maxWidth: 200,
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
 
-    [theme.fn.smallerThan("sm")]: {
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
+    [theme.fn.largerThan("md")]: {
+      maxWidth: 200,
     },
   },
 
@@ -38,18 +39,19 @@ const useStyles = createStyles((theme) => ({
 
     [theme.fn.smallerThan("sm")]: {
       marginTop: theme.spacing.xs,
-      textAlign: "center",
     },
   },
 
   inner: {
     display: "flex",
     justifyContent: "space-between",
-    paddingLeft: 60,
-    paddingRight: 60,
-    [theme.fn.smallerThan("md")]: {
-      flexDirection: "column",
-      alignItems: "center",
+    flexDirection: "column",
+    alignItems: "center",
+
+    [theme.fn.largerThan("md")]: {
+      paddingLeft: 60,
+      paddingRight: 60,
+      flexDirection: "row",
     },
   },
 
@@ -87,7 +89,7 @@ const useStyles = createStyles((theme) => ({
     fontWeight: 700,
     fontFamily: `Greycliff CF, ${theme.fontFamily}`,
     marginBottom: theme.spacing.xs / 2,
-    color: theme.colorScheme === "dark" ? theme.white : theme.black,
+    color: theme.black,
   },
 
   afterFooter: {
@@ -99,9 +101,7 @@ const useStyles = createStyles((theme) => ({
     paddingBottom: theme.spacing.xl,
     paddingLeft: 60,
     paddingRight: 60,
-    borderTop: `1px solid ${
-      theme.colorScheme === "dark" ? theme.colors.dark[4] : theme.colors.gray[2]
-    }`,
+    borderTop: `1px solid ${theme.colors.gray[2]}`,
 
     [theme.fn.smallerThan("md")]: {
       flexDirection: "column",
@@ -144,7 +144,12 @@ export function Footer() {
       <Container fluid={true} className={classes.inner}>
         <div className={classes.logo}>
           {/* <MantineLogo size={30} /> */}
-          <Text size="xs" color="dimmed" className={classes.description}>
+          <Image
+            height={80}
+            width={80}
+            style={{ backgroundColor: "royalblue" }}
+          ></Image>
+          <Text color="dimmed" className={classes.description}>
             28 , SSG Majesty Mall , Plot No. 2 Road No. 43, Guru Harikishan
             Marg,Pitam Pura,Delhi 10034
           </Text>
