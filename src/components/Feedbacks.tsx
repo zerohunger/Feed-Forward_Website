@@ -5,6 +5,8 @@ import {
   Title,
   Text,
   Image,
+  Group,
+  Space,
 } from "@mantine/core";
 import { Carousel } from "@mantine/carousel";
 import { useMediaQuery } from "@mantine/hooks";
@@ -100,21 +102,28 @@ function FeedbackCard(props: FeedbackCardProps) {
 
   return (
     <Paper shadow="xl" p={theme.spacing.xl * 2} className={classes.card}>
-      <div>
-        <Title order={3} className={classes.cardTitle}>
-          {props.title}
-        </Title>
-        <Text color="dimmed" className={classes.cardSubTitle} size="xs">
-          {props.subtitle}
-        </Text>
+      <Group position="apart">
+        <div>
+          <Title order={3} className={classes.cardTitle}>
+            {props.title}
+          </Title>
+          <Text color="dimmed" className={classes.cardSubTitle} size="xs">
+            {props.subtitle}
+          </Text>
 
-        <Text className={classes.description} size="xs">
-          {props.description}
-        </Text>
-      </div>
-      <Image
-        style={{ backgroundColor: "darkturquoise", height: 80, marginTop: 12 }}
-      ></Image>
+          <Text className={classes.description} size="xs">
+            {props.description}
+          </Text>
+        </div>
+
+        <Image
+          style={{
+            backgroundColor: "darkturquoise",
+            minHeight: 40,
+            marginTop: 12,
+          }}
+        ></Image>
+      </Group>
     </Paper>
   );
 }
@@ -166,14 +175,14 @@ const data: FeedbackCardProps[] = [
     title: "Bhavay Sharma",
     subtitle: "Student",
     description:
-      "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.vhkbgkjb jbkjbjkbkjbkjbkjbjkb  kbkjkbkjb bkbbb.",
+      "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.  kbkjkbkjb bkbbb.",
     rating: 5,
   },
   {
     title: "Prabal Rajora",
     subtitle: "Class 12th PCB student",
     description:
-      "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.vhkbgkjb jbkjbjkbkjbkjbkjbjkb  kbkjkbkjb bkbbb.",
+      "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation vejbkjbjkbkjbkjbkjbjkb  kbkjkbkjb bkbbb.",
     rating: 5,
   },
 ];
