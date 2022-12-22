@@ -2,17 +2,20 @@ import { Container, createStyles, Title, Image } from "@mantine/core";
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
-    paddingRight: theme.spacing.xl * 5,
-    paddingLeft: theme.spacing.xl * 5,
-    paddingTop: theme.spacing.xl * 4,
-    paddingBottom: theme.spacing.md,
     alignItems: "center",
     justifyItems: "center",
     justifyContent: "center",
     backgroundColor: theme.colors.gray[1],
 
+    [theme.fn.largerThan("md")]: {
+      paddingRight: theme.spacing.xl * 5,
+      paddingLeft: theme.spacing.xl * 5,
+      paddingTop: theme.spacing.xl * 4,
+      paddingBottom: theme.spacing.md,
+    },
+
     [theme.fn.smallerThan("md")]: {
-      padding: 30,
+      padding: 10,
     },
   },
 
@@ -21,30 +24,38 @@ const useStyles = createStyles((theme) => ({
     fontWeight: 500,
     marginBottom: theme.spacing.xl,
     textAlign: "center",
-    fontSize: 20,
-    lineHeight: "24px",
-    letterSpacing: "10%",
+    fontSize: 17,
+    marginTop: theme.spacing.xl * 2,
     color: "#3174F3",
+
+    [theme.fn.largerThan("md")]: {
+      fontSize: 20,
+      lineHeight: "24px",
+      letterSpacing: "10%",
+    },
   },
 
   subtitle: {
     fontFamily: `Greycliff CF, ${theme.fontFamily}`,
     fontWeight: 600,
     textAlign: "center",
-    fontSize: 36,
-    [theme.fn.smallerThan("sm")]: {
-      fontSize: 28,
-      textAlign: "center",
+    fontSize: 25,
+    lineHeight: "24px",
+    letterSpacing: "10%",
+    [theme.fn.largerThan("md")]: {
+      fontSize: 36,
     },
   },
 
   carousel: {
     backgroundColor: "turquoise",
-    minHeight: "70vh",
-    margin: 20,
-    [theme.fn.smallerThan("sm")]: {
-      minHeight: "50vh",
-      margin: 10,
+    minHeight: "55vh",
+    marginTop: theme.spacing.xl * 2,
+    marginBottom: theme.spacing.xl * 2,
+    [theme.fn.largerThan("md")]: {
+      minHeight: "70vh",
+      marginTop: theme.spacing.xl * 2,
+      marginBottom: theme.spacing.xl * 2,
     },
   },
 }));
