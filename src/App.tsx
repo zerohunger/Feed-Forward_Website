@@ -45,7 +45,7 @@ export default function App() {
         {/* <AppHeader /> */}
         <Hero />
         <Offering />
-        {/* <Features /> */}
+        <Features />
         {/* <NumberAchivements /> */}
         {/* <Feedbacks /> */}
         {/* <InstitueFaith /> */}

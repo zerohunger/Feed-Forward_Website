@@ -102,12 +102,13 @@ export function Feature({ icon, title, description }: FeatureProps) {
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
-    paddingRight: theme.spacing.xl * 5,
-    paddingLeft: theme.spacing.xl * 5,
-    paddingTop: theme.spacing.xl * 4,
-    paddingBottom: theme.spacing.xl * 4,
-    [theme.fn.smallerThan("md")]: {
-      padding: theme.spacing.md,
+    padding: theme.spacing.md * 2,
+
+    [theme.fn.largerThan("md")]: {
+      paddingRight: theme.spacing.xl * 5,
+      paddingLeft: theme.spacing.xl * 5,
+      paddingTop: theme.spacing.xl * 4,
+      paddingBottom: theme.spacing.xl * 4,
     },
   },
 
@@ -116,9 +117,9 @@ const useStyles = createStyles((theme) => ({
     fontWeight: 600,
     marginBottom: theme.spacing.md,
     textAlign: "center",
-    fontSize: 48,
-    [theme.fn.smallerThan("md")]: {
-      fontSize: 28,
+    fontSize: 25,
+    [theme.fn.largerThan("md")]: {
+      fontSize: 48,
       textAlign: "center",
     },
   },
@@ -128,10 +129,10 @@ const useStyles = createStyles((theme) => ({
     fontWeight: 400,
     marginBottom: theme.spacing.md,
     textAlign: "center",
-    fontSize: 18,
-    width: "60%",
-    [theme.fn.smallerThan("md")]: {
-      fontSize: 15,
+    fontSize: 15,
+    [theme.fn.largerThan("md")]: {
+      fontSize: 18,
+      width: "60%",
       textAlign: "center",
     },
   },
