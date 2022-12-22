@@ -48,7 +48,7 @@ export default function App() {
         <Features />
         <NumberAchivements />
         <Feedbacks />
-        {/* <InstitueFaith /> */}
+        <InstitueFaith />
         {/* <PartnerWithVignam /> */}
         {/* <Footer /> */}
       </Container>
