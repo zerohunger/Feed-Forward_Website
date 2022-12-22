@@ -1,4 +1,5 @@
 import { Container, createStyles, Title, Text } from "@mantine/core";
+import { Widget } from "@typeform/embed-react";
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
@@ -58,15 +59,12 @@ export function PartnerWithVignam() {
       <Text className={classes.subtitle}>
         Fill the form below and our team will contact you for the demo
       </Text>
-      <Container
-        style={{
-          backgroundColor: "royalblue",
-          minHeight: "60vh",
-          minWidth: "90%",
-          marginTop: 14,
-          marginBottom: 14,
-        }}
-      ></Container>
+
+      <Widget
+        id="W2tLHm8d"
+        inlineOnMobile={true}
+        style={{ minHeight: "60vh", height: "80vh", marginTop: 20 }}
+      />
     </Container>
   );
 }

@@ -48,9 +48,9 @@ export default function App() {
         <Features />
         <NumberAchivements />
         <Feedbacks />
-        {/* <InstitueFaith /> */}
-        {/* <PartnerWithVignam />  */}
-        {/* <Footer /> */}
+        <InstitueFaith />
+        <PartnerWithVignam /> 
+        <Footer />
       </Container>
     </MantineProvider>
   );
