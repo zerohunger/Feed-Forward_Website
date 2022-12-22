@@ -38,6 +38,11 @@ const useStyles = createStyles((theme) => ({
       paddingLeft: 60,
       paddingRight: 60,
     },
+
+    [theme.fn.smallerThan("sm")]: {
+      paddingLeft: 0,
+      paddingRight: 0,
+    },
   },
 
   title: {

@@ -47,7 +47,7 @@ export default function App() {
         <Offering />
         <Features />
         <NumberAchivements />
-        {/* <Feedbacks /> */}
+        <Feedbacks />
         {/* <InstitueFaith /> */}
         {/* <PartnerWithVignam />  */}
         {/* <Footer /> */}

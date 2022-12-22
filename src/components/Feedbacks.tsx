@@ -43,15 +43,18 @@ const useStyles = createStyles((theme) => ({
   },
 
   card: {
-    height: 440,
+    height: "100%",
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
     backgroundPosition: "center",
     borderRadius: 20,
-    [theme.fn.smallerThan("md")]: {
-      fontSize: 28,
+    padding: theme.spacing.xl * 2,
+
+    [theme.fn.smallerThan("sm")]: {
+      fontSize: 12,
       textAlign: "center",
+      padding: theme.spacing.sm * 2,
     },
   },
 
@@ -101,7 +104,7 @@ function FeedbackCard(props: FeedbackCardProps) {
   const { classes, theme } = useStyles();
 
   return (
-    <Paper shadow="xl" p={theme.spacing.xl * 2} className={classes.card}>
+    <Paper shadow="xl" className={classes.card}>
       <Group position="apart">
         <div>
           <Title order={3} className={classes.cardTitle}>
