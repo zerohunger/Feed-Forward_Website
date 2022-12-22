@@ -1,45 +1,59 @@
 import classes from "*.module.css";
-import { Container, createStyles, Group, Stack, Title } from "@mantine/core";
+import {
+  Center,
+  Container,
+  createStyles,
+  Group,
+  Stack,
+  Title,
+} from "@mantine/core";
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
-    padding: 0,
-    margin: 0,
     display: "flex",
     backgroundColor: theme.colors.blue[0],
-    minHeight: "370px",
-    alignItems: "center",
-    justifyContent: "center",
-    justifyItems: "center",
+    padding: 0,
     alignContent: "center",
+    paddingTop: theme.spacing.xl * 2,
+    paddingBottom: theme.spacing.xl * 2,
+    [theme.fn.largerThan("md")]: {
+      padding: 0,
+      margin: 0,
+      minHeight: "300px",
+    },
+  },
+
+  title: {
+    fontWeight: 800,
+    fontSize: 72,
+    lineHeight: "108px",
+    textAlign: "center",
+    color: "#0850FD",
+  },
+
+  subtitle: {
+    fontWeight: 500,
+    fontSize: 20,
+    lineHeight: "30px",
+    textAlign: "center",
+  },
+
+  achivementCard: {
+    marginBottom: theme.spacing.xl * 2,
+    [theme.fn.largerThan("md")]: {
+      padding: 0,
+      margin: 0,
+    },
   },
 }));
 
 function Achivement(props: { title: string; subtitle: string }) {
+  const { classes } = useStyles();
   return (
-    <Stack spacing={1} align="center" justify="center">
-      <Title
-        style={{
-          fontWeight: 800,
-          fontSize: 72,
-          lineHeight: "108px",
-          textAlign: "center",
-          color: "#0850FD",
-        }}
-      >
-        {props.title}
-      </Title>
-      <Title
-        style={{
-          fontWeight: 500,
-          fontSize: 20,
-          lineHeight: "30px",
-          textAlign: "center",
-        }}
-      >
-        {props.subtitle}
-      </Title>
-    </Stack>
+    <Container className={classes.achivementCard}>
+      <Title className={classes.title}>{props.title}</Title>
+      <Title className={classes.subtitle}>{props.subtitle}</Title>
+    </Container>
   );
 }
 
@@ -47,8 +61,16 @@ export function NumberAchivements() {
   const { classes } = useStyles();
   return (
     <Container fluid={true} className={classes.wrapper}>
-      <Container style={{ minWidth: "80%" }}>
-        <Group position="apart" align="center">
+      <Container
+        fluid={true}
+        style={{
+          minWidth: "100%",
+          display: "flex",
+          justifyContent: "space-evenly",
+          alignContent: "stretch",
+        }}
+      >
+        <Group style={{ minWidth: "100%" }} position="apart">
           <Achivement title="1400+" subtitle="Satisfied users" />
           <Achivement title="1000+" subtitle="Topics Covered" />
           <Achivement title="50%" subtitle="Increase in School’s Efficiency" />
