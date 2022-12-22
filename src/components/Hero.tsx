@@ -4,10 +4,7 @@ import {
   Container,
   Title,
   Button,
-  Group,
   Text,
-  List,
-  ThemeIcon,
 } from "@mantine/core";
 
 const useStyles = createStyles((theme) => ({

@@ -7,6 +7,7 @@ import {
   Stack,
   Title,
 } from "@mantine/core";
+import CountUp from "react-countup";
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
@@ -69,11 +70,22 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-function Achivement(props: { title: string; subtitle: string }) {
+function Achivement(props: {
+  count: number;
+  suffix: string;
+  subtitle: string;
+}) {
   const { classes } = useStyles();
   return (
     <Container className={classes.achivementCard}>
-      <Title className={classes.title}>{props.title}</Title>
+      <Title className={classes.title}>
+        <CountUp
+          suffix={props.suffix}
+          delay={0.3}
+          duration={1.5}
+          end={props.count}
+        />
+      </Title>
       <Title className={classes.subtitle}>{props.subtitle}</Title>
     </Container>
   );
@@ -85,9 +97,13 @@ export function NumberAchivements() {
     <Container fluid={true} className={classes.wrapper}>
       <Container fluid={true} className={classes.innerContainer}>
         <Group style={{ minWidth: "100%" }} position="apart">
-          <Achivement title="1400+" subtitle="Satisfied users" />
-          <Achivement title="1000+" subtitle="Topics Covered" />
-          <Achivement title="50%" subtitle="Increase in School’s Efficiency" />
+          <Achivement count={1400} suffix="+" subtitle="Satisfied users" />
+          <Achivement count={1000} suffix="+" subtitle="Topics Covered" />
+          <Achivement
+            count={50}
+            suffix="%"
+            subtitle="Increase in School’s Efficiency"
+          />
         </Group>
       </Container>
     </Container>
