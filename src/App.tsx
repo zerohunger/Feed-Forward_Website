@@ -1,26 +1,57 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Container, MantineProvider, Text } from "@mantine/core";
+import { Hero } from "./components/Hero";
+import { AppHeader } from "./components/Header";
+import { Features } from "./components/Features";
+import { NumberAchivements } from "./components/NumberAchivements";
+import { Feedbacks } from "./components/Feedbacks";
+import { InstitueFaith } from "./components/InstituteFaith";
+import { PartnerWithVignam } from "./components/PartnerWithVignam";
+import { Footer } from "./components/Footer";
+import { Offering } from "./components/Offering";
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <MantineProvider
+      withGlobalStyles
+      withNormalizeCSS
+      theme={{
+        colors: {
+          primaryBlue: [
+            "#3174F3",
+            "#3174F3",
+            "#3174F3",
+            "#3174F3",
+            "#3174F3",
+            "#3174F3",
+            "#3174F3",
+            "#3174F3",
+            "#3174F3",
+            "#3174F3",
+          ],
+        },
+        primaryColor: "primaryBlue",
+      }}
+    >
+      <Container
+        fluid={true}
+        style={{
+          paddingLeft: 0,
+          paddingRight: 0,
+          marginLeft: 0,
+          marginRight: 0,
+          paddingTop: 20,
+        }}
+      >
+        <AppHeader />
+        <Hero />
+        <Offering />
+        <Features />
+        <NumberAchivements />
+        <Feedbacks />
+        <InstitueFaith />
+        <PartnerWithVignam />
+        <Footer />
+      </Container>
+    </MantineProvider>
   );
 }
-
-export default App;
