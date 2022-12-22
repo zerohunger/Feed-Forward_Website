@@ -25,7 +25,8 @@ const useStyles = createStyles((theme) => ({
 
     [theme.fn.smallerThan("md")]: {
       maxWidth: "100%",
-      marginRight: 0,
+      marginLeft: 10,
+      padding: 20,
     },
   },
 
@@ -35,10 +36,6 @@ const useStyles = createStyles((theme) => ({
     fontSize: 62,
     lineHeight: "75px",
     fontWeight: 900,
-
-    [theme.fn.smallerThan("xs")]: {
-      fontSize: 28,
-    },
   },
 
   image: {
@@ -68,7 +65,7 @@ export function Hero() {
   const { classes } = useStyles();
   return (
     <div>
-      <Container size="xl" fluid={true} style={{}}>
+      <Container size="xl" fluid={true}>
         <div className={classes.inner}>
           <div className={classes.content}>
             <Title className={classes.title}>

@@ -106,6 +106,9 @@ const useStyles = createStyles((theme) => ({
     paddingLeft: theme.spacing.xl * 5,
     paddingTop: theme.spacing.xl * 4,
     paddingBottom: theme.spacing.xl * 4,
+    [theme.fn.smallerThan("md")]: {
+      padding: theme.spacing.md,
+    },
   },
 
   title: {
@@ -114,9 +117,9 @@ const useStyles = createStyles((theme) => ({
     marginBottom: theme.spacing.md,
     textAlign: "center",
     fontSize: 48,
-    [theme.fn.smallerThan("sm")]: {
+    [theme.fn.smallerThan("md")]: {
       fontSize: 28,
-      textAlign: "left",
+      textAlign: "center",
     },
   },
 
@@ -127,18 +130,14 @@ const useStyles = createStyles((theme) => ({
     textAlign: "center",
     fontSize: 18,
     width: "60%",
-    [theme.fn.smallerThan("sm")]: {
-      fontSize: 28,
-      textAlign: "left",
+    [theme.fn.smallerThan("md")]: {
+      fontSize: 15,
+      textAlign: "center",
     },
   },
 
   description: {
     textAlign: "center",
-
-    [theme.fn.smallerThan("sm")]: {
-      textAlign: "left",
-    },
   },
 }));
 

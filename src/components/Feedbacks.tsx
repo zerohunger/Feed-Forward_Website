@@ -19,6 +19,12 @@ const useStyles = createStyles((theme) => ({
     alignItems: "center",
     justifyItems: "center",
     justifyContent: "center",
+    [theme.fn.smallerThan("md")]: {
+      paddingTop: theme.spacing.xl * 2,
+      paddingBottom: theme.spacing.xl * 2,
+      paddingRight: theme.spacing.xl,
+      paddingLeft: theme.spacing.xl,
+    },
   },
 
   title: {
@@ -28,9 +34,9 @@ const useStyles = createStyles((theme) => ({
     marginBottom: theme.spacing.xl * 2,
     textAlign: "center",
     fontSize: 48,
-    [theme.fn.smallerThan("sm")]: {
+    [theme.fn.smallerThan("md")]: {
       fontSize: 28,
-      textAlign: "left",
+      textAlign: "center",
     },
   },
 
@@ -41,6 +47,10 @@ const useStyles = createStyles((theme) => ({
     justifyContent: "space-between",
     backgroundPosition: "center",
     borderRadius: 20,
+    [theme.fn.smallerThan("md")]: {
+      fontSize: 28,
+      textAlign: "center",
+    },
   },
 
   cardTitle: {
@@ -50,6 +60,9 @@ const useStyles = createStyles((theme) => ({
     lineHeight: 1.2,
     fontSize: 40,
     marginTop: theme.spacing.xs,
+    [theme.fn.smallerThan("md")]: {
+      fontSize: 28,
+    },
   },
 
   cardSubTitle: {
@@ -59,6 +72,9 @@ const useStyles = createStyles((theme) => ({
     lineHeight: "22px",
     fontSize: 16,
     marginTop: theme.spacing.xs,
+    [theme.fn.smallerThan("md")]: {
+      fontSize: 12,
+    },
   },
 
   description: {
@@ -66,6 +82,9 @@ const useStyles = createStyles((theme) => ({
     color: theme.black,
     fontWeight: 400,
     fontSize: 20,
+    [theme.fn.smallerThan("md")]: {
+      fontSize: 17,
+    },
   },
 }));
 
@@ -118,7 +137,7 @@ export function Feedbacks() {
         breakpoints={[{ maxWidth: "sm", slideSize: "100%", slideGap: 2 }]}
         slideGap="xl"
         align="center"
-        loop={true}
+        loop={mobile ? false : true}
         withIndicators={true}
         slidesToScroll={mobile ? 1 : 2}
       >

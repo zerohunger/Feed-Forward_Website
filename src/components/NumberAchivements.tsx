@@ -1,4 +1,19 @@
-import { Container, Group, Overlay, Stack, Title } from "@mantine/core";
+import classes from "*.module.css";
+import { Container, createStyles, Group, Stack, Title } from "@mantine/core";
+
+const useStyles = createStyles((theme) => ({
+  wrapper: {
+    padding: 0,
+    margin: 0,
+    display: "flex",
+    backgroundColor: theme.colors.blue[0],
+    minHeight: "370px",
+    alignItems: "center",
+    justifyContent: "center",
+    justifyItems: "center",
+    alignContent: "center",
+  },
+}));
 
 function Achivement(props: { title: string; subtitle: string }) {
   return (
@@ -29,22 +44,11 @@ function Achivement(props: { title: string; subtitle: string }) {
 }
 
 export function NumberAchivements() {
+  const { classes } = useStyles();
   return (
-    <Container
-      fluid={true}
-      style={{
-        padding: 0,
-        margin: 0,
-        display: "flex",
-        backgroundColor: "skyblue",
-        minHeight: "370px",
-        alignItems: "center",
-        justifyContent: "center",
-        justifyItems: "center",
-      }}
-    >
+    <Container fluid={true} className={classes.wrapper}>
       <Container style={{ minWidth: "80%" }}>
-        <Group position="apart">
+        <Group position="apart" align="center">
           <Achivement title="1400+" subtitle="Satisfied users" />
           <Achivement title="1000+" subtitle="Topics Covered" />
           <Achivement title="50%" subtitle="Increase in School’s Efficiency" />

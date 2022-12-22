@@ -10,6 +10,10 @@ const useStyles = createStyles((theme) => ({
     justifyItems: "center",
     justifyContent: "center",
     backgroundColor: theme.colors.gray[1],
+
+    [theme.fn.smallerThan("md")]: {
+      padding: 30,
+    },
   },
 
   title: {
@@ -21,10 +25,6 @@ const useStyles = createStyles((theme) => ({
     lineHeight: "24px",
     letterSpacing: "10%",
     color: "#3174F3",
-    [theme.fn.smallerThan("sm")]: {
-      fontSize: 28,
-      textAlign: "left",
-    },
   },
 
   subtitle: {
@@ -37,6 +37,16 @@ const useStyles = createStyles((theme) => ({
       textAlign: "center",
     },
   },
+
+  carousel: {
+    backgroundColor: "turquoise",
+    minHeight: "70vh",
+    margin: 20,
+    [theme.fn.smallerThan("sm")]: {
+      minHeight: "50vh",
+      margin: 10,
+    },
+  },
 }));
 
 export function Offering() {
@@ -47,9 +57,7 @@ export function Offering() {
       <Title className={classes.subtitle}>
         Digital solutions that run in any hardware at your school
       </Title>
-      <Image
-        style={{ backgroundColor: "turquoise", minHeight: "70vh", margin: 20 }}
-      ></Image>
+      <Image className={classes.carousel}></Image>
     </Container>
   );
 }

@@ -10,6 +10,12 @@ const useStyles = createStyles((theme) => ({
     alignItems: "center",
     justifyItems: "center",
     justifyContent: "center",
+    [theme.fn.smallerThan("md")]: {
+      paddingRight: theme.spacing.xl * 2,
+      paddingLeft: theme.spacing.xl * 2,
+      paddingTop: theme.spacing.xl,
+      paddingBottom: theme.spacing.xl,
+    },
   },
 
   title: {

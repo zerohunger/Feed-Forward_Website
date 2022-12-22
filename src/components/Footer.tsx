@@ -15,13 +15,9 @@ import {
 
 const useStyles = createStyles((theme) => ({
   footer: {
-    marginTop: 120,
     paddingTop: theme.spacing.xl * 2,
     paddingBottom: theme.spacing.xl * 2,
-    backgroundColor:
-      theme.colorScheme === "dark"
-        ? theme.colors.dark[6]
-        : theme.colors.gray[0],
+    backgroundColor: theme.colors.gray[0],
     borderTop: `1px solid ${
       theme.colorScheme === "dark" ? theme.colors.dark[5] : theme.colors.gray[2]
     }`,
@@ -51,7 +47,7 @@ const useStyles = createStyles((theme) => ({
     justifyContent: "space-between",
     paddingLeft: 60,
     paddingRight: 60,
-    [theme.fn.smallerThan("sm")]: {
+    [theme.fn.smallerThan("md")]: {
       flexDirection: "column",
       alignItems: "center",
     },
@@ -61,21 +57,22 @@ const useStyles = createStyles((theme) => ({
     display: "flex",
     flexWrap: "wrap",
 
-    [theme.fn.smallerThan("sm")]: {
-      display: "none",
+    [theme.fn.smallerThan("md")]: {
+      flexDirection: "column",
     },
   },
 
   wrapper: {
     width: 160,
+    [theme.fn.smallerThan("md")]: {
+      width: "100vw",
+      padding: 20,
+    },
   },
 
   link: {
     display: "block",
-    color:
-      theme.colorScheme === "dark"
-        ? theme.colors.dark[1]
-        : theme.colors.gray[6],
+    color: theme.colors.gray[6],
     fontSize: theme.fontSizes.sm,
     paddingTop: 3,
     paddingBottom: 3,
@@ -106,13 +103,13 @@ const useStyles = createStyles((theme) => ({
       theme.colorScheme === "dark" ? theme.colors.dark[4] : theme.colors.gray[2]
     }`,
 
-    [theme.fn.smallerThan("sm")]: {
+    [theme.fn.smallerThan("md")]: {
       flexDirection: "column",
     },
   },
 
   social: {
-    [theme.fn.smallerThan("sm")]: {
+    [theme.fn.smallerThan("md")]: {
       marginTop: theme.spacing.xs,
     },
   },
