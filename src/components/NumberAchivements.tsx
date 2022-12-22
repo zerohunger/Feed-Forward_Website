@@ -23,6 +23,23 @@ const useStyles = createStyles((theme) => ({
     },
   },
 
+  innerContainer: {
+    minWidth: "100%",
+    display: "flex",
+    justifyContent: "space-evenly",
+    alignContent: "stretch",
+
+    [theme.fn.largerThan("lg")]: {
+      paddingLeft: 120,
+      paddingRight: 120,
+    },
+
+    [theme.fn.smallerThan("lg")]: {
+      paddingLeft: 60,
+      paddingRight: 60,
+    },
+  },
+
   title: {
     fontWeight: 800,
     fontSize: 72,
@@ -61,15 +78,7 @@ export function NumberAchivements() {
   const { classes } = useStyles();
   return (
     <Container fluid={true} className={classes.wrapper}>
-      <Container
-        fluid={true}
-        style={{
-          minWidth: "100%",
-          display: "flex",
-          justifyContent: "space-evenly",
-          alignContent: "stretch",
-        }}
-      >
+      <Container fluid={true} className={classes.innerContainer}>
         <Group style={{ minWidth: "100%" }} position="apart">
           <Achivement title="1400+" subtitle="Satisfied users" />
           <Achivement title="1000+" subtitle="Topics Covered" />
