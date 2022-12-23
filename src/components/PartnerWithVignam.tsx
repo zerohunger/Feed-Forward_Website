@@ -46,6 +46,7 @@ const useStyles = createStyles((theme) => ({
 
   highlight: {
     color: "#3174F3",
+    fontWeight: 900,
   },
 }));
 

@@ -11,7 +11,7 @@ import {
 import { Carousel } from "@mantine/carousel";
 import { useMediaQuery } from "@mantine/hooks";
 
-const useStyles = createStyles((theme) => ({
+const useStyles = createStyles((theme, _params, getRef) => ({
   wrapper: {
     paddingRight: theme.spacing.xl * 5,
     paddingLeft: theme.spacing.xl * 5,
@@ -102,6 +102,38 @@ const useStyles = createStyles((theme) => ({
       maxWidth: "50%",
     },
   },
+
+  carousel: {
+    "&:hover": {
+      [`& .${getRef("carouselControls")}`]: {
+        opacity: 1,
+      },
+    },
+  },
+
+  carouselControlsContainer: {
+    ref: getRef("carouselControlsContainer"),
+    transition: "opacity 150ms ease",
+    opacity: 0,
+  },
+
+  carouselControls: {
+    ref: getRef("carouselControls"),
+    backgroundColor: "#3174F3",
+    color: "white",
+    height: 50,
+    width: 50,
+  },
+
+  carouselIndicator: {
+    width: 60,
+    height: 14,
+    backgroundColor: theme.colors.gray[5],
+    "&[data-active]": {
+      width: 12,
+      backgroundColor: "#3174F3",
+    },
+  },
 }));
 
 interface FeedbackCardProps {
@@ -132,7 +164,6 @@ function FeedbackCard(props: FeedbackCardProps) {
 
         <Image
           height={40}
-          // width={"70%"}
           fit="fill"
           className={classes.rating}
           src={require("../assets/images/stars.png")}
@@ -163,6 +194,12 @@ export function Feedbacks() {
         loop={mobile ? false : true}
         withIndicators={true}
         slidesToScroll={mobile ? 1 : 2}
+        classNames={{
+          root: classes.carousel,
+          // controls: classes.carouselControlsContainer,
+          indicator: classes.carouselIndicator,
+          control: classes.carouselControls,
+        }}
       >
         {slides}
       </Carousel>

@@ -42,7 +42,7 @@ const useStyles = createStyles((theme) => ({
     fontWeight: 400,
     textAlign: "left",
     fontSize: 20,
-    marginBottom: theme.spacing.xl * 2, 
+    marginBottom: theme.spacing.xl * 2,
     [theme.fn.largerThan("md")]: {
       fontSize: 24,
     },
@@ -89,16 +89,14 @@ export function InstitueFaith() {
         <Space></Space>
         <Group>
           <Image
-            src={require("../assets/images/IITR.png")}
+            src={require("../assets/images/iHUB.png")}
             withPlaceholder
-            style={{ backgroundColor: "floralwhite" }}
             height={120}
             width={120}
           />
           <Image
-            src={require("../assets/images/iHUB.png")}
+            src={require("../assets/images/IITR.png")}
             withPlaceholder
-            style={{ backgroundColor: "palegoldenrod" }}
             height={120}
             width={120}
           />

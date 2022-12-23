@@ -106,14 +106,14 @@ export function AppHeader() {
   const [opened, { toggle, close }] = useDisclosure(false);
 
   const options: { label: string; isDemoButton: boolean }[] = [
-    {
-      label: "About Us",
-      isDemoButton: false,
-    },
-    {
-      label: "Student",
-      isDemoButton: false,
-    },
+    // {
+    //   label: "About Us",
+    //   isDemoButton: false,
+    // },
+    // {
+    //   label: "Student",
+    //   isDemoButton: false,
+    // },
     {
       label: "Request Demo",
       isDemoButton: true,
@@ -123,7 +123,7 @@ export function AppHeader() {
   const { classes, cx } = useStyles();
 
   const items = options.map((link) => (
-    <div>
+    <div key={link.label}>
       {link.isDemoButton === true && (
         <Button className={classes.demoButton}> Request Demo </Button>
       )}{" "}
@@ -155,7 +155,7 @@ export function AppHeader() {
             width={40}
             src={require("../assets/images/LOGO.png")}
           ></Image>
-          <Title>Vignam</Title>
+          <Title>VIGNAM</Title>
         </Group>
 
         <Group position="apart">
