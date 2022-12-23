@@ -1,4 +1,4 @@
-import classes from "*.module.css";
+
 import {
   Center,
   Container,
@@ -8,6 +8,7 @@ import {
   Stack,
   Title,
 } from "@mantine/core";
+
 import CountUp from "react-countup";
 
 const useStyles = createStyles((theme) => ({
@@ -77,15 +78,22 @@ function Achivement(props: {
   subtitle: string;
 }) {
   const { classes } = useStyles();
+
   return (
     <Container className={classes.achivementCard}>
       <Title className={classes.title}>
         <CountUp
           suffix={props.suffix}
-          delay={0.3}
+          delay={1}
           duration={1.5}
           end={props.count}
-        />
+        >
+          {({ countUpRef, start }) => (
+            <div>
+              <span ref={countUpRef} />
+            </div>
+          )}
+        </CountUp>
       </Title>
       <Title className={classes.subtitle}>{props.subtitle}</Title>
     </Container>

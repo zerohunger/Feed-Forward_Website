@@ -6,7 +6,6 @@ import {
   Button,
   Text,
 } from "@mantine/core";
-import { url } from "inspector";
 
 const useStyles = createStyles((theme) => ({
   inner: {
@@ -85,7 +84,7 @@ const useStyles = createStyles((theme) => ({
   requestDemoButton: {
     marginTop: 30,
     width: "70%",
-    
+
     backgroundColor: theme.primaryColor,
   },
 
@@ -124,10 +123,12 @@ export function Hero() {
               Request Demo
             </Button>
           </div>
-          <Image
-            src={require("https://imgur.com/a/2T9OwwI")}
-            className={classes.image}
-          />
+          <video autoPlay className={classes.image} loop muted>
+            <source
+              src="https://i.imgur.com/lB4kbfY.mp4"
+              type="video/mp4"
+            ></source>
+          </video>
         </div>
       </Container>
     </div>

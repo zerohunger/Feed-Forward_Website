@@ -1,4 +1,4 @@
-import { Container, MantineProvider, Text } from "@mantine/core";
+import { Container, MantineProvider } from "@mantine/core";
 import { Hero } from "./components/Hero";
 import { AppHeader } from "./components/Header";
 import { Features } from "./components/Features";
@@ -44,12 +44,13 @@ export default function App() {
       >
         <AppHeader />
         <Hero />
+
         <Offering />
         <Features />
         <NumberAchivements />
         <Feedbacks />
         <InstitueFaith />
-        <PartnerWithVignam /> 
+        <PartnerWithVignam />
         <Footer />
       </Container>
     </MantineProvider>

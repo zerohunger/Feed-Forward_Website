@@ -1,9 +1,6 @@
 import { Container, createStyles, Title, Image } from "@mantine/core";
-import { Autoplay } from "swiper";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
+
+import { OfferingImagesInfinteScroll } from "./OfferingImagesInfinteScroll";
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
@@ -28,7 +25,7 @@ const useStyles = createStyles((theme) => ({
     marginBottom: theme.spacing.xl,
     textAlign: "center",
     fontSize: 17,
-    marginTop: theme.spacing.xl ,
+    marginTop: theme.spacing.xl,
     color: "#3174F3",
 
     [theme.fn.largerThan("md")]: {
@@ -49,18 +46,6 @@ const useStyles = createStyles((theme) => ({
       fontSize: 36,
     },
   },
-
-  carousel: {
-    // backgroundColor: "turquoise",
-    minHeight: "55vh",
-    marginTop: theme.spacing.xl * 2,
-    marginBottom: theme.spacing.xl * 2,
-    [theme.fn.largerThan("md")]: {
-      minHeight: "70vh",
-      marginTop: theme.spacing.xl * 2,
-      marginBottom: theme.spacing.xl * 2,
-    },
-  },
 }));
 
 export function Offering() {
@@ -72,37 +57,7 @@ export function Offering() {
       <Title className={classes.subtitle}>
         Digital solutions that run in any hardware at your school
       </Title>
-
-      <Image className={classes.carousel}></Image>
-
-      <Swiper
-        style={{ paddingTop: 50 }}
-        slidesPerView={3}
-        loop={true}
-        autoplay={{
-          delay: 1000,
-          disableOnInteraction: false,
-          pauseOnMouseEnter: true,
-        }}
-        speed={2000}
-        modules={[Autoplay]}
-        updateOnWindowResize={true}
-        autoHeight={true}
-      >
-        {/* <SwiperSlide>
-          <Image
-            src={require("../assets/images/Desktop.png")}
-            width={828}
-          ></Image>
-        </SwiperSlide>
-
-        <SwiperSlide>
-          <Image
-            src={require("../assets/images/Mobile.png")}
-            width={348}
-          ></Image>
-        </SwiperSlide> */}
-      </Swiper>
+      <OfferingImagesInfinteScroll />
     </Container>
   );
 }

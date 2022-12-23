@@ -196,7 +196,6 @@ export function Feedbacks() {
         slidesToScroll={mobile ? 1 : 2}
         classNames={{
           root: classes.carousel,
-          // controls: classes.carouselControlsContainer,
           indicator: classes.carouselIndicator,
           control: classes.carouselControls,
         }}
