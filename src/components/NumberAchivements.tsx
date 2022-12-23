@@ -1,4 +1,3 @@
-
 import {
   Center,
   Container,
@@ -88,7 +87,7 @@ function Achivement(props: {
           duration={1.5}
           end={props.count}
         >
-          {({ countUpRef, start }) => (
+          {({ countUpRef }) => (
             <div>
               <span ref={countUpRef} />
             </div>
