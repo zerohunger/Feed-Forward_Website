@@ -45,7 +45,6 @@ const useStyles = createStyles((theme) => ({
     fontSize: 62,
     lineHeight: "75px",
     fontWeight: 900,
-
     [theme.fn.smallerThan("lg")]: {
       fontSize: 32,
       lineHeight: "45px",
@@ -73,7 +72,10 @@ const useStyles = createStyles((theme) => ({
   },
 
   highlight: {
-    position: "relative",
+    position: "absolute",
+    opacity: 0,
+    animation: "rotateWord 1s linear infinite 0s",
+
     borderRadius: theme.radius.sm,
     color: "#3174F3",
 
@@ -93,17 +95,17 @@ const useStyles = createStyles((theme) => ({
     fontSize: 20,
     lineHeight: "30px",
     fontWeight: 400,
-    paddingTop: 10,
+    paddingTop: 80,
 
     [theme.fn.smallerThan("lg")]: {
       fontSize: 15,
       lineHeight: "25px",
-      paddingTop: 2,
+      paddingTop: 40,
     },
   },
 }));
 
-export function Hero() {
+export function Hero(props: { onDemoButtonClick: () => void }) {
   const { classes } = useStyles();
   return (
     <div>
@@ -112,7 +114,13 @@ export function Hero() {
           <div className={classes.content}>
             <Title className={classes.title}>
               Make your School <br></br>
-              <span className={classes.highlight}>SMARTER</span>
+              <span className="rotator-wrapper ">
+                <span className="rotator">
+                  <span className={classes.highlight}>SMARTER</span>
+                  <span className={classes.highlight}>FUTURISTIC</span>
+                  <span className={classes.highlight}>STANDOUT</span>
+                </span>
+              </span>
             </Title>
             <Text color="dimmed" mt="md" className={classes.description}>
               Vignam help schools to transform their classroom teaching, set up
@@ -120,7 +128,12 @@ export function Hero() {
               their existing management practices
             </Text>
 
-            <Button radius="md" size="xl" className={classes.requestDemoButton}>
+            <Button
+              radius="md"
+              size="xl"
+              className={classes.requestDemoButton}
+              onClick={props.onDemoButtonClick}
+            >
               Request Demo
             </Button>
           </div>

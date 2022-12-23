@@ -102,7 +102,7 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-export function AppHeader() {
+export function AppHeader(props: { onDemoButtonClick: () => void }) {
   const [opened, { toggle, close }] = useDisclosure(false);
 
   const options: { label: string; isDemoButton: boolean }[] = [
@@ -125,7 +125,13 @@ export function AppHeader() {
   const items = options.map((link) => (
     <div key={link.label}>
       {link.isDemoButton === true && (
-        <Button className={classes.demoButton}> Request Demo </Button>
+        <Button
+          className={classes.demoButton}
+          onClick={props.onDemoButtonClick}
+        >
+          {" "}
+          Request Demo{" "}
+        </Button>
       )}{" "}
       {link.isDemoButton === false && (
         <a

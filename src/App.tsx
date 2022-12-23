@@ -1,4 +1,4 @@
-import { Container, MantineProvider } from "@mantine/core";
+import { Container, MantineProvider, Modal } from "@mantine/core";
 import { Hero } from "./components/Hero";
 import { AppHeader } from "./components/Header";
 import { Features } from "./components/Features";
@@ -8,8 +8,12 @@ import { InstitueFaith } from "./components/InstituteFaith";
 import { PartnerWithVignam } from "./components/PartnerWithVignam";
 import { Footer } from "./components/Footer";
 import { Offering } from "./components/Offering";
+import { RequestDemoDialog } from "./dialogs/RequestDemoDialog";
+import { useState } from "react";
 
 export default function App() {
+  const [showDemoDialog, setShowDemoDialog] = useState<boolean>(false);
+
   return (
     <MantineProvider
       withGlobalStyles
@@ -42,8 +46,8 @@ export default function App() {
           paddingTop: 20,
         }}
       >
-        <AppHeader />
-        <Hero />
+        <AppHeader onDemoButtonClick={() => setShowDemoDialog(true)} />
+        <Hero onDemoButtonClick={() => setShowDemoDialog(true)} />
         <Offering />
         <Features />
         <NumberAchivements />
@@ -51,6 +55,14 @@ export default function App() {
         <InstitueFaith />
         <PartnerWithVignam />
         <Footer />
+
+        <Modal
+          centered
+          opened={showDemoDialog}
+          onClose={() => setShowDemoDialog(false)}
+        >
+          <RequestDemoDialog onSubmitClick={() => {}} />
+        </Modal>
       </Container>
     </MantineProvider>
   );
