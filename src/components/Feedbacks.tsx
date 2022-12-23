@@ -17,7 +17,7 @@ const useStyles = createStyles((theme, _params, getRef) => ({
     paddingLeft: theme.spacing.xl * 5,
     paddingTop: theme.spacing.xl * 4,
     paddingBottom: theme.spacing.xl * 4,
-    backgroundColor: theme.colors.yellow[1],
+    backgroundColor: theme.colors.yellow[0],
     alignItems: "center",
     justifyItems: "center",
     justifyContent: "center",
@@ -119,8 +119,7 @@ const useStyles = createStyles((theme, _params, getRef) => ({
 
   carouselControls: {
     ref: getRef("carouselControls"),
-    backgroundColor: "#3174F3",
-    color: "white",
+    color: "#3174F3",
     height: 50,
     width: 50,
   },
@@ -225,14 +224,14 @@ const data: FeedbackCardProps[] = [
     title: "Bhavay Sharma",
     subtitle: "Student",
     description:
-      "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.  kbkjkbkjb bkbbb.",
+      "Vignam Labs has helped me to visualise physics like fluid mechanics and vernier mechanism in very clear way, plus I have now access to practical labs 24/7.",
     rating: 5,
   },
   {
     title: "Prabal Rajora",
     subtitle: "Class 12th PCB student",
     description:
-      "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation vejbkjbjkbkjbkjbkjbjkb  kbkjkbkjb bkbbb.",
+      "Vignam labs has got detailed experiments in their virtual lab, I can perform all the operations which are possible in real world, also it helps me introduce the experiment well.",
     rating: 5,
   },
 ];

@@ -57,9 +57,10 @@ const useStyles = createStyles((theme) => ({
     maxWidth: 700,
     minWidth: 700,
     maxHeight: 460,
-    backgroundColor: theme.colors.red[5],
     borderRadius: 18,
     marginLeft: 50,
+    objectFit: "fill",
+    backgroundColor: theme.colors.gray[0],
     [theme.fn.smallerThan("lg")]: {
       maxWidth: 300,
       minWidth: 300,
@@ -84,7 +85,7 @@ const useStyles = createStyles((theme) => ({
   requestDemoButton: {
     marginTop: 30,
     width: "70%",
-
+    fontWeight: 900,
     backgroundColor: theme.primaryColor,
   },
 

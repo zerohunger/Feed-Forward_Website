@@ -86,13 +86,13 @@ function Achivement(props: {
           delay={1}
           duration={1.5}
           end={props.count}
-        >
-          {({ countUpRef }) => (
+        />
+          {/* {({ countUpRef }) => (
             <div>
               <span ref={countUpRef} />
             </div>
           )}
-        </CountUp>
+        </CountUp> */}
       </Title>
       <Title className={classes.subtitle}>{props.subtitle}</Title>
     </Container>
