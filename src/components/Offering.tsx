@@ -8,9 +8,7 @@ const useStyles = createStyles((theme) => ({
     backgroundColor: theme.colors.gray[1],
 
     [theme.fn.largerThan("md")]: {
-      paddingRight: theme.spacing.xl * 5,
-      paddingLeft: theme.spacing.xl * 5,
-      paddingTop: theme.spacing.xl * 4,
+      paddingTop: theme.spacing.xl * 2,
       paddingBottom: theme.spacing.md,
     },
 

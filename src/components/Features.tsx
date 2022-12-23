@@ -1,5 +1,4 @@
 import {
-  ThemeIcon,
   Text,
   Title,
   Container,
@@ -9,48 +8,40 @@ import {
   Image,
   Stack,
 } from "@mantine/core";
-import {
-  IconGauge,
-  IconCookie,
-  IconUser,
-  IconMessage2,
-  IconLock,
-  TablerIcon,
-} from "@tabler/icons";
 
 export const MOCKDATA = [
   {
-    icon: "/assets/images/features/Feature5.png",
+    icon: require("../assets/images/features/Feature1.png"),
     title: "Effective Teaching",
     description:
       "With Vignam, teachers are able to make students visualise the concepts they are teaching, in an interactive way.",
   },
   {
-    icon: "/assets/images/features/Feature5.png",
+    icon: require("../assets/images/features/Feature3.png"),
     title: "Engaged Students",
     description:
       "With Vignam’s Interactive Education content, students actively participate in classrooms and able to learn more efficiently.",
   },
   {
-    icon: "/assets/images/features/Feature5.png",
+    icon: require("../assets/images/features/Feature3.png"),
     title: "Practical Labs Setup",
     description:
       "Vignam helps schools to set up practical labs  with all the latest equipments for students to perform experiments ",
   },
   {
-    icon: "/assets/images/features/Feature5.png",
+    icon: require("../assets/images/features/Feature4.png"),
     title: "Teachers Evaluation",
     description:
       "Detailed analysis and monthly reports about your teacher’s performance accessible to school management on any device.",
   },
   {
-    icon: "/assets/images/features/Feature5.png",
+    icon: require("../assets/images/features/Feature5.png"),
     title: "Student Evaluation",
     description:
       "Manage student’s detailed performance reports securely and efficiently, with AI-powered personalised feedback system.",
   },
   {
-    icon: "/assets/images/features/Feature5.png",
+    icon: require("../assets/images/features/Feature6.png"),
     title: "Fee Management",
     description:
       "Make your school’s fee management effective, efficient, and easy Automate and simplify the entire fee management process.",
@@ -67,7 +58,7 @@ export function Feature({ icon, title, description }: FeatureProps) {
   const theme = useMantineTheme();
   return (
     <Stack spacing={1} align="center" style={{ padding: 12 }}>
-      <Image withPlaceholder src={require("../assets/images/features/Feature1.png")} height={80} width={80}></Image>
+      <Image withPlaceholder src={icon} height={80} width={80}></Image>
       <Text
         style={{
           marginTop: theme.spacing.sm,

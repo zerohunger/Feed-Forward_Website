@@ -6,6 +6,7 @@ import {
   Button,
   Text,
 } from "@mantine/core";
+import { url } from "inspector";
 
 const useStyles = createStyles((theme) => ({
   inner: {
@@ -122,7 +123,7 @@ export function Hero() {
             </Button>
           </div>
           <Image
-            src={require("../assets/images/Heading.png")}
+            src={require("https://imgur.com/a/2T9OwwI")}
             className={classes.image}
           />
         </div>

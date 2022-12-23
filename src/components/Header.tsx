@@ -18,8 +18,11 @@ const useStyles = createStyles((theme) => ({
   root: {
     position: "relative",
     zIndex: 1,
-    paddingLeft: 50,
-    paddingRight: 50,
+
+    [theme.fn.largerThan("sm")]: {
+      paddingLeft: 50,
+      paddingRight: 50,
+    },
   },
 
   dropdown: {

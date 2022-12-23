@@ -42,6 +42,7 @@ const useStyles = createStyles((theme) => ({
     fontWeight: 400,
     textAlign: "left",
     fontSize: 20,
+    marginBottom: theme.spacing.xl * 2, 
     [theme.fn.largerThan("md")]: {
       fontSize: 24,
     },

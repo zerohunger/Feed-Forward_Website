@@ -91,6 +91,17 @@ const useStyles = createStyles((theme) => ({
       fontSize: 17,
     },
   },
+
+  rating: {
+    marginTop: 12,
+    [theme.fn.smallerThan("md")]: {
+      width: "100%",
+    },
+
+    [theme.fn.largerThan("md")]: {
+      maxWidth: "50%",
+    },
+  },
 }));
 
 interface FeedbackCardProps {
@@ -121,11 +132,9 @@ function FeedbackCard(props: FeedbackCardProps) {
 
         <Image
           height={40}
-          width={"70%"}
+          // width={"70%"}
           fit="fill"
-          style={{
-            marginTop: 12,
-          }}
+          className={classes.rating}
           src={require("../assets/images/stars.png")}
         ></Image>
       </Group>
