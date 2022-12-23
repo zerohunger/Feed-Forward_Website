@@ -60,7 +60,9 @@ const useStyles = createStyles((theme) => ({
 
     [theme.fn.largerThan("md")]: {
       paddingLeft: 100,
+      flexDirection: "row",
     },
+
     [theme.fn.smallerThan("md")]: {
       flexDirection: "column",
     },
@@ -71,6 +73,10 @@ const useStyles = createStyles((theme) => ({
     [theme.fn.smallerThan("md")]: {
       width: "100vw",
       padding: 20,
+    },
+
+    [theme.fn.largerThan("md")]: {
+      width: 260,
     },
   },
 
@@ -156,6 +162,7 @@ export function Footer() {
         </div>
         <div className={classes.groups}>{groups}</div>
       </Container>
+
       <Container fluid={true} className={classes.afterFooter}>
         <Text color="dimmed" size="sm">
           © 2022 Vignam Labs PVT Limited. All rights reserved.

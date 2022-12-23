@@ -58,7 +58,14 @@ export function Feature({ icon, title, description }: FeatureProps) {
   const theme = useMantineTheme();
   return (
     <Stack spacing={1} align="center" style={{ padding: 12 }}>
-      <Image withPlaceholder src={icon} height={80} width={80}></Image>
+      <Image
+        withPlaceholder
+        src={icon}
+        style={{
+          height: 40,
+          width: 40,
+        }}
+      ></Image>
       <Text
         style={{
           marginTop: theme.spacing.sm,
