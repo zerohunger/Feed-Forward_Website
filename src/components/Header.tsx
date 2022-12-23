@@ -99,6 +99,7 @@ const useStyles = createStyles((theme) => ({
     minHeight: "46px",
     textAlign: "center",
     backgroundColor: "#3174F3",
+    fontWeight: 900,
   },
 }));
 

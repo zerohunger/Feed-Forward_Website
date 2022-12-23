@@ -1,4 +1,4 @@
-import { Button, NativeSelect, Stack, TextInput } from "@mantine/core";
+import { Button, NativeSelect, Stack, TextInput, Title } from "@mantine/core";
 import { useState } from "react";
 import {
   IconAt,
@@ -90,6 +90,7 @@ export function RequestDemoDialog(props: ARequestDemoDialogProps) {
 
   return (
     <Stack>
+      <Title style={{ textAlign: "center" }}>Partner With Us</Title>
       <TextInput
         label="School Name"
         withAsterisk
