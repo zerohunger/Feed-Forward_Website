@@ -17,8 +17,7 @@ import {
 const useStyles = createStyles((theme) => ({
   footer: {
     paddingTop: theme.spacing.xl * 2,
-    paddingBottom: theme.spacing.xl * 2,
-    backgroundColor: theme.colors.gray[0],
+    paddingBottom: theme.spacing.xl,
     borderTop: `1px solid ${
       theme.colorScheme === "dark" ? theme.colors.dark[5] : theme.colors.gray[2]
     }`,
@@ -59,13 +58,16 @@ const useStyles = createStyles((theme) => ({
     display: "flex",
     flexWrap: "wrap",
 
+    [theme.fn.largerThan("md")]: {
+      paddingLeft: 100,
+    },
     [theme.fn.smallerThan("md")]: {
       flexDirection: "column",
     },
   },
 
   wrapper: {
-    width: 160,
+    width: 360,
     [theme.fn.smallerThan("md")]: {
       width: "100vw",
       padding: 20,
@@ -149,8 +151,7 @@ export function Footer() {
             src={require("../assets/images/LOGO.png")}
           ></Image>
           <Text color="dimmed" className={classes.description}>
-            28 , SSG Majesty Mall , Plot No. 2 Road No. 43, Guru Harikishan
-            Marg,Pitam Pura,Delhi 10034
+            Transform your school with digital solutions provided by VIGNAM.
           </Text>
         </div>
         <div className={classes.groups}>{groups}</div>
@@ -227,6 +228,11 @@ const DATA: {
   {
     title: "Contact US",
     links: [
+      {
+        label:
+          "28 , SSG Majesty Mall , Plot No. 2 Road No. 43, Guru Harikishan Marg,Pitam Pura,Delhi 10034",
+        link: "",
+      },
       {
         label: "+91-9650488030",
         link: "",
