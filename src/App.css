@@ -97,7 +97,7 @@
 .rotator-wrapper span span {
   position: absolute;
   opacity: 0;
-  animation: rotateWord 10s linear infinite 0s;
+  animation: rotateWord 10s linear infinite 10s;
 }
 
 .rotator-wrapper span span:nth-child(2) {
@@ -138,5 +138,55 @@
   }
   100% {
     opacity: 0;
+  }
+}
+
+.slider {
+  height: 600px;
+  margin: auto;
+  padding-top: 5%;
+  overflow: hidden;
+  width: auto;
+}
+
+.slider .slide-track-primary {
+  position: absolute;
+  animation: sprimary 10s linear infinite;
+  display: flex;
+  width: calc(550px * 6);
+}
+
+.slider .slide-track-secondary {
+  position: absolute;
+  animation: ssecondary 10s linear infinite;
+  display: flex;
+  width: calc(550px * 6);
+}
+
+.slider .slide {
+  height: 300px;
+}
+
+.slide img {
+  height: 380px;
+  padding: 10px;
+  width: auto;
+}
+
+@keyframes sprimary {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-500px * 6));
+  }
+}
+
+@keyframes ssecondary {
+  0% {
+    transform: translateX(calc(500px * 6));
+  }
+  100% {
+    transform: translateX(0);
   }
 }
