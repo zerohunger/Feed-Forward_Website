@@ -55,6 +55,5 @@
   "devDependencies": {
     "@types/lodash.throttle": "^4.1.7",
     "@types/mixpanel-browser": "^2.38.0"
-  },
-  "proxy": "http://localhost:5001"
+  }
 }

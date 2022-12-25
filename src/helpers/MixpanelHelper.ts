@@ -1,6 +1,6 @@
 import mixpanel from "mixpanel-browser";
 
-let token = "a5bb6bef75cb63fa0d184c61ae00956e";
+let token: string = process.env.REACT_APP_MIXPANEL_TOKEN ?? "";
 
 mixpanel.init(token);
 

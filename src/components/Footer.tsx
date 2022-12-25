@@ -14,6 +14,7 @@ import {
   IconBrandDiscord,
   IconBrandLinkedin,
 } from "@tabler/icons";
+import { SocialMediaLink } from "../@types/DataTypes.d";
 import {
   AnalyticsEvent,
   ContactUsOptionType,
