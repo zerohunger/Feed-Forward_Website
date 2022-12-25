@@ -5,6 +5,7 @@ import {
   ActionIcon,
   Group,
   Image,
+  Title,
 } from "@mantine/core";
 import {
   IconBrandTwitter,
@@ -13,6 +14,12 @@ import {
   IconBrandDiscord,
   IconBrandLinkedin,
 } from "@tabler/icons";
+import {
+  AnalyticsEvent,
+  ContactUsOptionType,
+  SocialMediaType,
+} from "../helpers/MixpanelEvents.d";
+import { Mixpanel } from "../helpers/MixpanelHelper";
 
 const useStyles = createStyles((theme) => ({
   footer: {
@@ -132,8 +139,10 @@ export function Footer() {
         key={index}
         className={classes.link}
         component="a"
-        href={link.link}
-        onClick={(event) => event.preventDefault()}
+        onClick={(event) => {
+          event.preventDefault();
+          link.onClick();
+        }}
       >
         {link.label}
       </Text>
@@ -151,11 +160,16 @@ export function Footer() {
     <footer className={classes.footer}>
       <Container fluid={true} className={classes.inner}>
         <div className={classes.logo}>
-          <Image
-            height={50}
-            width={50}
-            src={require("../assets/images/LOGO.png")}
-          ></Image>
+          <Group>
+            <Image
+              height={50}
+              width={50}
+              src={require("../assets/images/LOGO.png")}
+            ></Image>
+            <Title style={{ fontSize: 30, fontWeight: 900, color: "#3174F3" }}>
+              VIGNAM
+            </Title>
+          </Group>
           <Text color="dimmed" className={classes.description}>
             Transform your school with digital solutions provided by VIGNAM.
           </Text>
@@ -169,19 +183,59 @@ export function Footer() {
         </Text>
 
         <Group spacing={0} className={classes.social} position="right" noWrap>
-          <ActionIcon size="lg">
+          <ActionIcon
+            size="lg"
+            onClick={() => {
+              Mixpanel.track(AnalyticsEvent.SocialMediaClicked, {
+                type: SocialMediaType.twitter,
+              });
+              window.open(SocialMediaLink.twitter, "__blank");
+            }}
+          >
             <IconBrandTwitter size={18} stroke={1.5} />
           </ActionIcon>
-          <ActionIcon size="lg">
+          <ActionIcon
+            size="lg"
+            onClick={() => {
+              Mixpanel.track(AnalyticsEvent.SocialMediaClicked, {
+                type: SocialMediaType.youtube,
+              });
+              window.open(SocialMediaLink.youtube, "__blank");
+            }}
+          >
             <IconBrandYoutube size={18} stroke={1.5} />
           </ActionIcon>
-          <ActionIcon size="lg">
+          <ActionIcon
+            size="lg"
+            onClick={() => {
+              Mixpanel.track(AnalyticsEvent.SocialMediaClicked, {
+                type: SocialMediaType.insta,
+              });
+              window.open(SocialMediaLink.instagram, "__blank");
+            }}
+          >
             <IconBrandInstagram size={18} stroke={1.5} />
           </ActionIcon>
-          <ActionIcon size="lg">
+          <ActionIcon
+            size="lg"
+            onClick={() => {
+              Mixpanel.track(AnalyticsEvent.SocialMediaClicked, {
+                type: SocialMediaType.discord,
+              });
+              window.open(SocialMediaLink.discord, "__blank");
+            }}
+          >
             <IconBrandDiscord size={18} stroke={1.5} />
           </ActionIcon>
-          <ActionIcon size="lg">
+          <ActionIcon
+            size="lg"
+            onClick={() => {
+              Mixpanel.track(AnalyticsEvent.SocialMediaClicked, {
+                type: SocialMediaType.linkedIn,
+              });
+              window.open(SocialMediaLink.linkedIn, "__blank");
+            }}
+          >
             <IconBrandLinkedin size={18} stroke={1.5} />
           </ActionIcon>
         </Group>
@@ -192,18 +246,22 @@ export function Footer() {
 
 const DATA: {
   title: string;
-  links: { label: string; link: string }[];
+  links: { label: string; onClick: () => void }[];
 }[] = [
   {
     title: "Company",
     links: [
       {
         label: "About Us",
-        link: "",
+        onClick: () => {
+          Mixpanel.track(AnalyticsEvent.AboutUsClicked);
+        },
       },
       {
         label: "Privacy Policy",
-        link: "",
+        onClick: () => {
+          Mixpanel.track(AnalyticsEvent.PrivacyPolicyClicked);
+        },
       },
     ],
   },
@@ -212,23 +270,48 @@ const DATA: {
     links: [
       {
         label: "Discord",
-        link: "",
+        onClick: () => {
+          Mixpanel.track(AnalyticsEvent.SocialMediaClicked, {
+            type: SocialMediaType.discord,
+          });
+          window.open(SocialMediaLink.discord, "__blank");
+        },
       },
       {
         label: "Twitter",
-        link: "",
+        onClick: () => {
+          Mixpanel.track(AnalyticsEvent.SocialMediaClicked, {
+            type: SocialMediaType.twitter,
+          });
+          window.open(SocialMediaLink.twitter, "__blank");
+        },
       },
       {
         label: "YouTube",
-        link: "",
+        onClick: () => {
+          Mixpanel.track(AnalyticsEvent.SocialMediaClicked, {
+            type: SocialMediaType.youtube,
+          });
+          window.open(SocialMediaLink.youtube, "__blank");
+        },
       },
       {
         label: "Instagram",
-        link: "",
+        onClick: () => {
+          Mixpanel.track(AnalyticsEvent.SocialMediaClicked, {
+            type: SocialMediaType.insta,
+          });
+          window.open(SocialMediaLink.instagram, "__blank");
+        },
       },
       {
         label: "LinkedIn",
-        link: "",
+        onClick: () => {
+          Mixpanel.track(AnalyticsEvent.SocialMediaClicked, {
+            type: SocialMediaType.linkedIn,
+          });
+          window.open(SocialMediaLink.linkedIn, "__blank");
+        },
       },
     ],
   },
@@ -238,19 +321,37 @@ const DATA: {
       {
         label:
           "28 , SSG Majesty Mall , Plot No. 2 Road No. 43, Guru Harikishan Marg,Pitam Pura,Delhi 10034",
-        link: "",
+        onClick: () => {
+          Mixpanel.track(AnalyticsEvent.SocialMediaClicked, {
+            type: ContactUsOptionType.address,
+          });
+        },
       },
       {
         label: "+91-9650488030",
-        link: "",
+        onClick: () => {
+          Mixpanel.track(AnalyticsEvent.SocialMediaClicked, {
+            type: ContactUsOptionType.phoneNumber,
+            phoneNumber: "+91-9650488030",
+          });
+        },
       },
       {
         label: "+91-8561057510",
-        link: "",
+        onClick: () => {
+          Mixpanel.track(AnalyticsEvent.SocialMediaClicked, {
+            type: ContactUsOptionType.phoneNumber,
+            phoneNumber: "+91-8561057510",
+          });
+        },
       },
       {
         label: "partner@vignam.com",
-        link: "",
+        onClick: () => {
+          Mixpanel.track(AnalyticsEvent.SocialMediaClicked, {
+            type: ContactUsOptionType.email,
+          });
+        },
       },
     ],
   },

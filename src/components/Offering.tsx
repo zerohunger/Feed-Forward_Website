@@ -1,4 +1,8 @@
 import { Container, createStyles, Title, Image } from "@mantine/core";
+import { useEffect } from "react";
+import { AnalyticsEvent, SectionType } from "../helpers/MixpanelEvents.d";
+import { Mixpanel } from "../helpers/MixpanelHelper";
+import { useVisibility } from "../helpers/useVisiblity";
 
 import { OfferingImagesInfinteScroll } from "./OfferingImagesInfinteScroll";
 
@@ -50,9 +54,16 @@ const useStyles = createStyles((theme) => ({
 
 export function Offering() {
   const { classes, theme } = useStyles();
-
+  const [isVisible, visibleRef] = useVisibility(0);
+  useEffect(() => {
+    if (isVisible) {
+      Mixpanel.track(AnalyticsEvent.UserScolled, {
+        section: SectionType.offering,
+      });
+    }
+  }, [isVisible]);
   return (
-    <Container fluid={true} className={classes.wrapper}>
+    <Container ref={visibleRef as any} fluid={true} className={classes.wrapper}>
       <Title className={classes.title}>WHAT DOES VIGNAM OFFER?</Title>
       <Title className={classes.subtitle}>
         Digital solutions that run in any hardware at your school

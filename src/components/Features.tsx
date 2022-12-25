@@ -8,6 +8,10 @@ import {
   Image,
   Stack,
 } from "@mantine/core";
+import { AnalyticsEvent, SectionType } from "../helpers/MixpanelEvents.d";
+import { Mixpanel } from "../helpers/MixpanelHelper";
+import { useVisibility } from "../helpers/useVisiblity";
+import { useEffect } from "react";
 
 export const MOCKDATA = [
   {
@@ -142,12 +146,20 @@ const useStyles = createStyles((theme) => ({
 
 export function Features() {
   const { classes, theme } = useStyles();
+  const [isVisible, visibleRef] = useVisibility(0);
+  useEffect(() => {
+    if (isVisible) {
+      Mixpanel.track(AnalyticsEvent.UserScolled, {
+        section: SectionType.features,
+      });
+    }
+  }, [isVisible]);
   const features = MOCKDATA.map((feature, index) => (
     <Feature {...feature} key={index} />
   ));
 
   return (
-    <Container fluid={true} className={classes.wrapper}>
+    <Container ref={visibleRef as any} fluid={true} className={classes.wrapper}>
       <Title className={classes.title}>
         Why partner with {<span style={{ color: "#3174F3" }}>Vignam</span>}{" "}
       </Title>

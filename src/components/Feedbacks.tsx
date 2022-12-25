@@ -6,10 +6,13 @@ import {
   Text,
   Image,
   Group,
-  Space,
 } from "@mantine/core";
 import { Carousel } from "@mantine/carousel";
 import { useMediaQuery } from "@mantine/hooks";
+import { useEffect } from "react";
+import { AnalyticsEvent, SectionType } from "../helpers/MixpanelEvents.d";
+import { Mixpanel } from "../helpers/MixpanelHelper";
+import { useVisibility } from "../helpers/useVisiblity";
 
 const useStyles = createStyles((theme, _params, getRef) => ({
   wrapper: {
@@ -175,13 +178,23 @@ function FeedbackCard(props: FeedbackCardProps) {
 export function Feedbacks() {
   const { classes, theme } = useStyles();
   const mobile = useMediaQuery(`(max-width: ${theme.breakpoints.sm}px)`);
+
+  const [isVisible, visibleRef] = useVisibility(0);
+  useEffect(() => {
+    if (isVisible) {
+      Mixpanel.track(AnalyticsEvent.UserScolled, {
+        section: SectionType.feedbacks,
+      });
+    }
+  }, [isVisible]);
+
   const slides = data.map((item) => (
     <Carousel.Slide key={item.title}>
       <FeedbackCard {...item} />
     </Carousel.Slide>
   ));
   return (
-    <Container fluid={true} className={classes.wrapper}>
+    <Container ref={visibleRef as any} fluid={true} className={classes.wrapper}>
       <Title className={classes.title}>
         What are people saying about Vignam?
       </Title>
@@ -197,6 +210,12 @@ export function Feedbacks() {
           root: classes.carousel,
           indicator: classes.carouselIndicator,
           control: classes.carouselControls,
+        }}
+        onNextSlide={() => {
+          Mixpanel.track(AnalyticsEvent.FeedbackNextClicked);
+        }}
+        onSlideChange={() => {
+          Mixpanel.track(AnalyticsEvent.FeedbackSlideChaned);
         }}
       >
         {slides}

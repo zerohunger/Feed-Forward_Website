@@ -1,15 +1,27 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React, { useEffect } from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { Mixpanel } from "./helpers/MixpanelHelper";
+import { AnalyticsEvent } from "./helpers/MixpanelEvents.d";
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+  document.getElementById("root") as HTMLElement
 );
+
+const Index = ({ children }: any) => {
+  useEffect(() => {
+    Mixpanel.track(AnalyticsEvent.LandingPageAccessed);
+  }, []);
+  return <div> {children}</div>;
+};
+
 root.render(
   <React.StrictMode>
-    <App />
+    <Index>
+      <App />
+    </Index>
   </React.StrictMode>
 );
 

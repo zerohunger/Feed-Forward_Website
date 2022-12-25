@@ -1,5 +1,9 @@
 import { Container, createStyles, Title, Text } from "@mantine/core";
 import { Widget } from "@typeform/embed-react";
+import { useEffect } from "react";
+import { AnalyticsEvent, SectionType } from "../helpers/MixpanelEvents.d";
+import { Mixpanel } from "../helpers/MixpanelHelper";
+import { useVisibility } from "../helpers/useVisiblity";
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
@@ -52,8 +56,16 @@ const useStyles = createStyles((theme) => ({
 
 export function PartnerWithVignam() {
   const { classes, theme } = useStyles();
+  const [isVisible, visibleRef] = useVisibility(0);
+  useEffect(() => {
+    if (isVisible) {
+      Mixpanel.track(AnalyticsEvent.UserScolled, {
+        section: SectionType.whyPartner,
+      });
+    }
+  }, [isVisible]);
   return (
-    <Container fluid={true} className={classes.wrapper}>
+    <Container ref={visibleRef as any} fluid={true} className={classes.wrapper}>
       <Title className={classes.title}>
         Partner with <span className={classes.highlight}>VIGNAM</span>
       </Title>

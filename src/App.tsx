@@ -1,4 +1,9 @@
-import { Container, MantineProvider, Modal } from "@mantine/core";
+import {
+  Container,
+  MantineProvider,
+  Modal,
+  useMantineTheme,
+} from "@mantine/core";
 import { Hero } from "./components/Hero";
 import { AppHeader } from "./components/Header";
 import { Features } from "./components/Features";
@@ -9,10 +14,35 @@ import { PartnerWithVignam } from "./components/PartnerWithVignam";
 import { Footer } from "./components/Footer";
 import { Offering } from "./components/Offering";
 import { RequestDemoDialog } from "./dialogs/RequestDemoDialog";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { Mixpanel } from "./helpers/MixpanelHelper";
+import {
+  AnalyticsEvent,
+  RequestDemoLocation,
+} from "./helpers/MixpanelEvents.d";
+import { Fab } from "react-tiny-fab";
+import { IconBrandWhatsapp } from "@tabler/icons";
+import { SocialMediaLink } from "./@types/DataTypes.d";
+import axios from "axios";
+import { SubmitFormData } from "./helpers/SubmitRequestDemo";
 
 export default function App() {
   const [showDemoDialog, setShowDemoDialog] = useState<boolean>(false);
+  const [domLoaded, setDomLoaded] = useState(false);
+  const theme = useMantineTheme();
+
+  useEffect(() => {
+    setDomLoaded(true);
+  }, []);
+
+  const renderFab = domLoaded ? (
+    <a href={SocialMediaLink.whatsApp} target="__blank">
+      <Fab
+        icon={<IconBrandWhatsapp color="white" size={28} />}
+        mainButtonStyles={{ backgroundColor: theme.colors.green[7] }}
+      ></Fab>
+    </a>
+  ) : null;
 
   return (
     <MantineProvider
@@ -46,8 +76,22 @@ export default function App() {
           paddingTop: 20,
         }}
       >
-        <AppHeader onDemoButtonClick={() => setShowDemoDialog(true)} />
-        <Hero onDemoButtonClick={() => setShowDemoDialog(true)} />
+        <AppHeader
+          onDemoButtonClick={() => {
+            Mixpanel.track(AnalyticsEvent.DemoButtonClicked, {
+              location: RequestDemoLocation.top,
+            });
+            setShowDemoDialog(true);
+          }}
+        />
+        <Hero
+          onDemoButtonClick={() => {
+            Mixpanel.track(AnalyticsEvent.DemoButtonClicked, {
+              location: RequestDemoLocation.hero,
+            });
+            setShowDemoDialog(true);
+          }}
+        />
         <Offering />
         <Features />
         <NumberAchivements />
@@ -61,8 +105,15 @@ export default function App() {
           opened={showDemoDialog}
           onClose={() => setShowDemoDialog(false)}
         >
-          <RequestDemoDialog onSubmitClick={() => {}} />
+          <RequestDemoDialog
+            onSubmitClick={(data) => {
+              Mixpanel.track(AnalyticsEvent.DemoFormSubmitted);
+              SubmitFormData(data);
+              setShowDemoDialog(false);
+            }}
+          />
         </Modal>
+        {renderFab}
       </Container>
     </MantineProvider>
   );

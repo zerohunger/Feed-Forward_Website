@@ -1,14 +1,10 @@
-import {
-  Center,
-  Container,
-  createStyles,
-  Group,
-  Overlay,
-  Stack,
-  Title,
-} from "@mantine/core";
+import { Container, createStyles, Group, Title } from "@mantine/core";
 
 import CountUp from "react-countup";
+import { useEffect } from "react";
+import { AnalyticsEvent, SectionType } from "../helpers/MixpanelEvents.d";
+import { Mixpanel } from "../helpers/MixpanelHelper";
+import { useVisibility } from "../helpers/useVisiblity";
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
@@ -87,7 +83,7 @@ function Achivement(props: {
           duration={1.5}
           end={props.count}
         />
-          {/* {({ countUpRef }) => (
+        {/* {({ countUpRef }) => (
             <div>
               <span ref={countUpRef} />
             </div>
@@ -101,8 +97,17 @@ function Achivement(props: {
 
 export function NumberAchivements() {
   const { classes, theme } = useStyles();
+  const [isVisible, visibleRef] = useVisibility(0);
+  useEffect(() => {
+    if (isVisible) {
+      Mixpanel.track(AnalyticsEvent.UserScolled, {
+        section: SectionType.numbers,
+      });
+    }
+  }, [isVisible]);
+
   return (
-    <Container fluid={true} className={classes.wrapper}>
+    <Container ref={visibleRef as any} fluid={true} className={classes.wrapper}>
       <Container fluid={true} className={classes.innerContainer}>
         <Group style={{ minWidth: "100%" }} position="apart">
           <Achivement count={1400} suffix="+" subtitle="Satisfied users" />

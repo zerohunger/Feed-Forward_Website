@@ -6,6 +6,10 @@ import {
   Button,
   Text,
 } from "@mantine/core";
+import { useEffect } from "react";
+import { AnalyticsEvent, SectionType } from "../helpers/MixpanelEvents.d";
+import { Mixpanel } from "../helpers/MixpanelHelper";
+import { useVisibility } from "../helpers/useVisiblity";
 
 const useStyles = createStyles((theme) => ({
   inner: {
@@ -107,8 +111,14 @@ const useStyles = createStyles((theme) => ({
 
 export function Hero(props: { onDemoButtonClick: () => void }) {
   const { classes } = useStyles();
+  const [isVisible, visibleRef] = useVisibility(0);
+  useEffect(() => {
+    if (isVisible) {
+      Mixpanel.track(AnalyticsEvent.UserScolled, { section: SectionType.hero });
+    }
+  }, [isVisible]);
   return (
-    <div>
+    <div ref={visibleRef as any}>
       <Container fluid={true}>
         <div className={classes.inner}>
           <div className={classes.content}>
