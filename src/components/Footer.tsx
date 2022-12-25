@@ -188,12 +188,12 @@ export function Footer() {
             size="lg"
             onClick={() => {
               Mixpanel.track(AnalyticsEvent.SocialMediaClicked, {
-                type: SocialMediaType.twitter,
+                type: SocialMediaType.discord,
               });
-              window.open(SocialMediaLink.twitter, "__blank");
+              window.open(SocialMediaLink.discord, "__blank");
             }}
           >
-            <IconBrandTwitter size={18} stroke={1.5} />
+            <IconBrandDiscord size={18} stroke={1.5} />
           </ActionIcon>
           <ActionIcon
             size="lg"
@@ -206,6 +206,19 @@ export function Footer() {
           >
             <IconBrandYoutube size={18} stroke={1.5} />
           </ActionIcon>
+          
+          <ActionIcon
+            size="lg"
+            onClick={() => {
+              Mixpanel.track(AnalyticsEvent.SocialMediaClicked, {
+                type: SocialMediaType.twitter,
+              });
+              window.open(SocialMediaLink.twitter, "__blank");
+            }}
+          >
+            <IconBrandTwitter size={18} stroke={1.5} />
+          </ActionIcon>
+
           <ActionIcon
             size="lg"
             onClick={() => {
@@ -217,17 +230,7 @@ export function Footer() {
           >
             <IconBrandInstagram size={18} stroke={1.5} />
           </ActionIcon>
-          <ActionIcon
-            size="lg"
-            onClick={() => {
-              Mixpanel.track(AnalyticsEvent.SocialMediaClicked, {
-                type: SocialMediaType.discord,
-              });
-              window.open(SocialMediaLink.discord, "__blank");
-            }}
-          >
-            <IconBrandDiscord size={18} stroke={1.5} />
-          </ActionIcon>
+
           <ActionIcon
             size="lg"
             onClick={() => {
@@ -347,11 +350,12 @@ const DATA: {
         },
       },
       {
-        label: "partner@vignam.com",
+        label: "901.vignam@gmail.com",
         onClick: () => {
           Mixpanel.track(AnalyticsEvent.SocialMediaClicked, {
             type: ContactUsOptionType.email,
           });
+          window.open("mailto:901.vignam@gmail.com");
         },
       },
     ],
