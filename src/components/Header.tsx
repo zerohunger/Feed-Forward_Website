@@ -101,20 +101,30 @@ const useStyles = createStyles((theme) => ({
     backgroundColor: "#3174F3",
     fontWeight: 900,
   },
+  navBarButton: {
+    fontWeight: 500,
+    color: "black",
+
+    "&:hover": {
+      color: "#3174F3",
+      backgroundColor: "transparent",
+    },
+  },
+
+  highlight: {
+    fontWeight: 700,
+    color: "#3174F3",
+    "&:hover": {
+      color: "#3174F3",
+      backgroundColor: "transparent",
+    },
+  },
 }));
 
 export function AppHeader(props: { onDemoButtonClick: () => void }) {
   const [opened, { toggle, close }] = useDisclosure(false);
 
   const options: { label: string; isDemoButton: boolean }[] = [
-    // {
-    //   label: "About Us",
-    //   isDemoButton: false,
-    // },
-    // {
-    //   label: "Student",
-    //   isDemoButton: false,
-    // },
     {
       label: "Request Demo",
       isDemoButton: true,
@@ -123,31 +133,42 @@ export function AppHeader(props: { onDemoButtonClick: () => void }) {
 
   const { classes, cx } = useStyles();
 
-  const items = options.map((link) => (
-    <div key={link.label}>
-      {link.isDemoButton === true && (
+  function ForStudentButton() {
+    return (
+      <Button
+        variant="subtle"
+        className={classes.navBarButton}
+        onClick={() => {
+          window.location.href = "https://app.vignamlabs.com";
+        }}
+      >
+        For Students
+      </Button>
+    );
+  }
+
+  function ForSchoolButton() {
+    return (
+      <Button variant="subtle" className={classes.highlight}>
+        For School
+      </Button>
+    );
+  }
+
+  function Items() {
+    return (
+      <>
+        <ForStudentButton />
+        <ForSchoolButton />
         <Button
           className={classes.demoButton}
           onClick={props.onDemoButtonClick}
         >
-          {" "}
-          Request Demo{" "}
+          Request Demo
         </Button>
-      )}{" "}
-      {link.isDemoButton === false && (
-        <a
-          key={link.label}
-          // href={link.link}
-          className={classes.link}
-          onClick={(event) => {
-            event.preventDefault();
-          }}
-        >
-          {link.label}
-        </a>
-      )}
-    </div>
-  ));
+      </>
+    );
+  }
 
   return (
     <Header height={HEADER_HEIGHT} className={classes.root}>
@@ -156,6 +177,12 @@ export function AppHeader(props: { onDemoButtonClick: () => void }) {
         fluid={true}
         className={classes.headerInnerContainer}
       >
+        <Burger
+          opened={opened}
+          onClick={toggle}
+          className={classes.burger}
+          size="sm"
+        />
         <Group>
           <Image
             height={40}
@@ -167,15 +194,9 @@ export function AppHeader(props: { onDemoButtonClick: () => void }) {
 
         <Group position="apart">
           <Group spacing={5} className={classes.links}>
-            {items}
+            <Items />
           </Group>
         </Group>
-        <Burger
-          opened={opened}
-          onClick={toggle}
-          className={classes.burger}
-          size="sm"
-        />
 
         <Transition transition="scale-y" duration={200} mounted={opened}>
           {(styles) => (
@@ -185,7 +206,7 @@ export function AppHeader(props: { onDemoButtonClick: () => void }) {
               shadow="xl"
               style={styles}
             >
-              {items}
+              <Items />
             </Paper>
           )}
         </Transition>
