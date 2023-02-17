@@ -8,6 +8,7 @@ import { OfferingImagesInfinteScroll } from "./OfferingImagesInfinteScroll";
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
+    marginTop:"5rem",
     alignItems: "center",
     justifyItems: "center",
     justifyContent: "center",

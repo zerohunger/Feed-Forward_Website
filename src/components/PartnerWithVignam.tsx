@@ -4,12 +4,13 @@ import { useEffect } from "react";
 import { AnalyticsEvent, SectionType } from "../helpers/MixpanelEvents.d";
 import { Mixpanel } from "../helpers/MixpanelHelper";
 import { useVisibility } from "../helpers/useVisiblity";
+import { Hero1 } from "./PannelForHero";
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
     backgroundColor: theme.colors.blue[0],
-    paddingRight: theme.spacing.xl * 2,
-    paddingLeft: theme.spacing.xl * 2,
+    paddingRight: theme.spacing.xl ,
+    paddingLeft: theme.spacing.xl ,
     paddingTop: theme.spacing.xl,
     paddingBottom: theme.spacing.xl,
 
@@ -18,6 +19,11 @@ const useStyles = createStyles((theme) => ({
       paddingLeft: theme.spacing.xl * 5,
       paddingTop: theme.spacing.xl * 4,
       paddingBottom: theme.spacing.xl * 4,
+      [theme.fn.smallerThan("md")]:{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }
     },
   },
 
@@ -52,10 +58,24 @@ const useStyles = createStyles((theme) => ({
     color: "#3174F3",
     fontWeight: 900,
   },
+  forpannel:{
+   
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    [theme.fn.largerThan("md")]:{
+    paddingLeft:"31%",paddingRight:"31%",paddingTop:"4%",paddingBottom:"2%"
+    },
+    [theme.fn.smallerThan("md")]:{
+      paddingTop:"4%",paddingBottom:"2%"
+
+    }
+
+  },
 }));
 
 export function PartnerWithVignam() {
-  const { classes, theme } = useStyles();
+ const { classes, theme } = useStyles();
   const [isVisible, visibleRef] = useVisibility(0);
   useEffect(() => {
     if (isVisible) {
@@ -66,18 +86,21 @@ export function PartnerWithVignam() {
   }, [isVisible]);
   return (
     <Container ref={visibleRef as any} fluid={true} className={classes.wrapper}>
-      <Title className={classes.title}>
+        <Title className={classes.title}>
         Partner with <span className={classes.highlight}>VIGNAM</span>
       </Title>
       <Text className={classes.subtitle}>
         Fill the form below and our team will contact you for the demo
       </Text>
+      <div className={classes.forpannel}>
+      <Hero1
+       onSubmitClick={() => {
+        Mixpanel.track(AnalyticsEvent.DemoFormSubmitted);
+      }}/>
+      </div>
+  
 
-      <Widget
-        id="W2tLHm8d"
-        inlineOnMobile={true}
-        style={{ minHeight: "60vh", height: "80vh", marginTop: 20 }}
-      />
+     
     </Container>
   );
 }

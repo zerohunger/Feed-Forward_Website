@@ -19,6 +19,7 @@ const useStyles = createStyles((theme) => ({
     paddingLeft: theme.spacing.xl * 2,
     paddingTop: theme.spacing.xl,
     paddingBottom: theme.spacing.xl,
+   
 
     [theme.fn.largerThan("md")]: {
       paddingRight: theme.spacing.xl * 5,

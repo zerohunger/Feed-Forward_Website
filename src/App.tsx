@@ -16,6 +16,7 @@ import { Offering } from "./components/Offering";
 import { RequestDemoDialog } from "./dialogs/RequestDemoDialog";
 import { useEffect, useState } from "react";
 import { Mixpanel } from "./helpers/MixpanelHelper";
+import { Hero1 } from "./components/PannelForHero";
 import {
   AnalyticsEvent,
   RequestDemoLocation,
@@ -25,6 +26,7 @@ import { IconBrandWhatsapp } from "@tabler/icons";
 import { SocialMediaLink } from "./@types/DataTypes.d";
 import axios from "axios";
 import { SubmitFormData } from "./helpers/SubmitRequestDemo";
+
 
 export default function App() {
   const [showDemoDialog, setShowDemoDialog] = useState<boolean>(false);
@@ -93,11 +95,13 @@ export default function App() {
           }}
         />
         <Offering />
-        <Features />
-        <NumberAchivements />
         <Feedbacks />
+        
+        <NumberAchivements />
+       
         <InstitueFaith />
-        <PartnerWithVignam />
+        <Features />
+        <PartnerWithVignam/>
         <Footer />
 
         <Modal
@@ -105,13 +109,12 @@ export default function App() {
           opened={showDemoDialog}
           onClose={() => setShowDemoDialog(false)}
         >
-          <RequestDemoDialog
-            onSubmitClick={(data) => {
-              Mixpanel.track(AnalyticsEvent.DemoFormSubmitted);
-              SubmitFormData(data);
-              setShowDemoDialog(false);
-            }}
-          />
+          <RequestDemoDialog 
+           onSubmitClick={(data) => {
+            Mixpanel.track(AnalyticsEvent.DemoFormSubmitted);
+            SubmitFormData(data);
+            setShowDemoDialog(false);
+          }}/>
         </Modal>
         {renderFab}
       </Container>

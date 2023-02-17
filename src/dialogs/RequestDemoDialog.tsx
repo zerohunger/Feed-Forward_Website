@@ -1,151 +1,117 @@
-import { Button, NativeSelect, Stack, TextInput, Title } from "@mantine/core";
+import { Button, NativeSelect, Stack, TextInput, Title,Group,Image,createStyles, Center,
+   } from "@mantine/core";
 import { useState } from "react";
 import {
   IconAt,
   IconPhoneCall,
   IconSchool,
   IconUserCircle,
+  
 } from "@tabler/icons";
+const useStyles = createStyles((theme) => ({
+ 
+    title: {
+    fontWeight: 700,
+    fontSize: 52,
+    textAlign: "center",
+    [theme.fn.largerThan("md")]: {
+    fontSize: "140%",
+    },
+    [theme.fn.smallerThan("md")]: {
+    fontSize: "140%"
+    },
+    },
+    image: {
+         display: 'flex',
+         alignItems: "center",
+         justifyContent: "center",
+    },
+    highlight: {
+      color: "#3174F3",
+      },
+    }));
 
 interface ARequestDemoDialogProps {
   onSubmitClick: (data: {
     name: string;
-    schoolName: string;
-    role: ICPRole;
-    phoneNumber: string;
-    email?: string;
+    mobileNumber: string;
   }) => void;
 }
 
-export enum ICPRole {
-  None = "Select Role",
-  SchoolOwner = "School Owner",
-  Trustee = "Trustee",
-  Principal = "Principal",
-  VicePrincipal = "Vice Principal",
-  Teacher = "Teacher",
-  Other = "Other",
-}
-
 export function RequestDemoDialog(props: ARequestDemoDialogProps) {
-  const [name, setName] = useState<string>();
-  const [schoolName, setSchoolName] = useState<string>();
-  const [role, setRole] = useState<ICPRole>(ICPRole.None);
-  const [phoneNumber, setPhoneNumber] = useState<string>();
-  const [email, setEmail] = useState<string>();
+  const { classes } = useStyles();
 
-  function DidSelectRole(selectedRole: string) {
-    switch (selectedRole) {
-      case "Select Role":
-        setRole(ICPRole.None);
-        return;
-      case "School Owner":
-        setRole(ICPRole.SchoolOwner);
-        return;
-      case "Trustee":
-        setRole(ICPRole.Trustee);
-        return;
-      case "Principal":
-        setRole(ICPRole.Principal);
-        return;
-      case "Vice Principal":
-        setRole(ICPRole.VicePrincipal);
-        return;
-      case "Teacher":
-        setRole(ICPRole.Teacher);
-        return;
-      case "Other":
-        setRole(ICPRole.Other);
-        return;
-    }
-  }
+  const [name, setName] = useState<string>();
+  
+  const [mobileNumber, setMobileNumber] = useState<string>();
+
+
 
   function DidSubmit() {
     let isValidName = name != null && name.length > 0;
-    let isValidSchoolName = schoolName != null && schoolName.length > 0;
-    let isValidPhoneNumber = phoneNumber != null && phoneNumber.length > 0;
-    let isValidRole = role != null && role != ICPRole.None;
+  
+    let isValidMobileNumber = mobileNumber != null && mobileNumber.length > 0;
+   
 
     if (isValidName == false) {
       return;
     }
-    if (isValidSchoolName == false) {
+    if (isValidMobileNumber == false) {
       return;
     }
-    if (isValidPhoneNumber == false) {
-      return;
-    }
-    if (isValidRole == false) {
-      return;
-    }
+   
 
     props.onSubmitClick({
-      name: name!,
-      schoolName: schoolName!,
-      role: role,
-      phoneNumber: phoneNumber!,
-      email: email,
+      
+    name: name!,
+      mobileNumber: mobileNumber!,
+      
     });
   }
+  
+
 
   return (
     <Stack>
-      <Title style={{ textAlign: "center" }}>Partner With Us</Title>
+      <div className={classes.image}>
+          <Image
+            height={40}
+            width={40}
+            
+            src={require("../assets/images/LOGO.png")}
+          ></Image>
+          </div>
+          <div>
+  <Title className={classes.title}>
+    Transform Your School with <span className={classes.highlight}>Vignam</span> Book a {" "}
+    <span className={classes.highlight}>Free Demo</span> Today!
+  </Title> 
+</div> 
+       
       <TextInput
-        label="School Name"
+        label="Enter your name"
         withAsterisk
         value={name}
-        icon={<IconSchool size={18} />}
-        placeholder="School Name"
-        onChange={(e) => setName(e.target.value)}
-      />
-      <TextInput
-        label="Name"
-        withAsterisk
-        value={schoolName}
         placeholder="Your Name"
         icon={<IconUserCircle size={18} />}
-        onChange={(e) => setSchoolName(e.target.value)}
+        onChange={(e) => setName(e.target.value)}
       />
-      <NativeSelect
-        value={role}
-        data={[
-          ICPRole.None,
-          ICPRole.SchoolOwner,
-          ICPRole.Trustee,
-          ICPRole.Principal,
-          ICPRole.VicePrincipal,
-          ICPRole.Teacher,
-          ICPRole.Other,
-        ]}
-        label="Role at school"
-        size="md"
-        withAsterisk
-        onChange={(e) => DidSelectRole(e.target.value)}
-      />
+      
       <TextInput
-        label="Phone Number"
+        label="Enter your mobile number"
         type="number"
         withAsterisk
-        value={phoneNumber}
-        placeholder="8561057510"
+        value={mobileNumber}
+        placeholder="9997364220"
         icon={<IconPhoneCall size={18} />}
-        onChange={(e) => setPhoneNumber(e.target.value)}
-      />
-      <TextInput
-        label="Email"
-        type="email"
-        icon={<IconAt size={18} />}
-        value={email}
-        placeholder="partner@vignam.com"
-        onChange={(e) => setEmail(e.target.value)}
+        onChange={(e) => setMobileNumber(e.target.value)}
       />
       <Button
         fullWidth
         onClick={DidSubmit}
         style={{ backgroundColor: "#3174F3" }}
       >
-        Submit
+        Book free Demo
       </Button>
     </Stack>
   );

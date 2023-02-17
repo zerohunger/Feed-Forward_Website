@@ -341,11 +341,11 @@ const DATA: {
         },
       },
       {
-        label: "+91-8561057510",
+        label: "+91-9997364220",
         onClick: () => {
           Mixpanel.track(AnalyticsEvent.SocialMediaClicked, {
             type: ContactUsOptionType.phoneNumber,
-            phoneNumber: "+91-8561057510",
+            phoneNumber: "+91-9997364220",
           });
         },
       },

@@ -105,6 +105,8 @@ export function Feature({ icon, title, description }: FeatureProps) {
 const useStyles = createStyles((theme) => ({
   wrapper: {
     padding: theme.spacing.md * 2,
+    backgroundColor: theme.colors.gray[1],
+
 
     [theme.fn.largerThan("md")]: {
       paddingRight: theme.spacing.xl * 5,

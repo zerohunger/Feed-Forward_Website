@@ -9,12 +9,14 @@ export enum AnalyticsEvent {
   UserScolled = "vignam_school_landing_page_scroll",
   DemoFormSubmitted = "vignam_school_request_demo_form_submitted",
   ContactUsClicked = "vignam_school_landing_page_contact_us_option_clicked",
+  RequestDemoPannelClicked = "vignam_school_landing_page_request_demo_clicked",
 }
 
 export enum RequestDemoLocation {
   top = "top_bar",
   hero = "hero_section",
 }
+
 
 export enum AboutUsLocation {
   top = "top_bar",

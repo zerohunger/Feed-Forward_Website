@@ -1,19 +1,43 @@
 import {
-  createStyles,
   Image,
   Container,
   Title,
-  Button,
   Text,
+  AppShell,
+  createStyles,
+  Drawer,
+  Menu,
+  Group,
+  Navbar,
+  ScrollArea,
+  Button,
+  Center,
 } from "@mantine/core";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { AnalyticsEvent, SectionType } from "../helpers/MixpanelEvents.d";
 import { Mixpanel } from "../helpers/MixpanelHelper";
 import { useVisibility } from "../helpers/useVisiblity";
+import { RequestDemoDialog } from "../dialogs/RequestDemoDialog";
+import { SubmitFormData } from "../helpers/SubmitRequestDemo";
+import { Hero1 } from "./PannelForHero";
 
 const useStyles = createStyles((theme) => ({
   inner: {
     display: "flex",
+    justifyContent: "space-evenly",
+
+    padding: theme.spacing.xl * 4,
+
+    [theme.fn.smallerThan("sm")]: {
+      paddingTop: theme.spacing.xl * 2,
+      paddingBottom: theme.spacing.xl * 2,
+      paddingLeft: theme.spacing.lg,
+      paddingRight: theme.spacing.lg,
+    },
+  },
+  inner1: {
+    display: "flex",
+    flexDirection: "column",
     justifyContent: "space-evenly",
 
     padding: theme.spacing.xl * 4,
@@ -34,7 +58,10 @@ const useStyles = createStyles((theme) => ({
 
     [theme.fn.smallerThan("lg")]: {
       maxWidth: "60%",
-      minWidth: "60%",
+      minWidth: "50%",
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
     },
 
     [theme.fn.smallerThan("sm")]: {
@@ -55,26 +82,6 @@ const useStyles = createStyles((theme) => ({
       fontWeight: 900,
     },
   },
-
-  image: {
-    maxWidth: 700,
-    minWidth: 700,
-    maxHeight: 460,
-    borderRadius: 18,
-    marginLeft: 50,
-    objectFit: "fill",
-    backgroundColor: theme.colors.gray[0],
-    [theme.fn.smallerThan("lg")]: {
-      maxWidth: 300,
-      minWidth: 300,
-      maxHeight: 300,
-    },
-
-    [theme.fn.smallerThan("sm")]: {
-      display: "none",
-    },
-  },
-
   highlight: {
     position: "absolute",
     opacity: 0,
@@ -99,7 +106,7 @@ const useStyles = createStyles((theme) => ({
     fontSize: 20,
     lineHeight: "30px",
     fontWeight: 400,
-    paddingTop: 80,
+    paddingTop: 100,
 
     [theme.fn.smallerThan("lg")]: {
       fontSize: 15,
@@ -107,54 +114,143 @@ const useStyles = createStyles((theme) => ({
       paddingTop: 40,
     },
   },
+  modal: {
+    position: "fixed",
+    "z-index": 1,
+    "padding-top": "100px",
+    left: 0,
+    top: 0,
+    width: "100%",
+    height: "100%",
+    overflow: "auto",
+    "background-color": "rgba(0,0,0,0.4)",
+  },
+  modalContent: {
+    top: 0,
+    "background-color": "#fefefe",
+    margin: "auto",
+    padding: "20px",
+    border: "1px solid #888",
+    width: "85%",
+  },
+  close: {
+    position: "absolute",
+    right: "10%",
+    fontSize: "30px",
+    color: "rgba(255,0,0)",
+    "background-color": "#fefefe",
+    margin: "auto",
+
+    border: "1px solid #fefefe",
+    width: "30px ",
+    cursor: "pointer",
+  },
+  heroContainer: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    [theme.fn.smallerThan("lg")]: {
+      flexDirection: "column",
+    },
+  },
+  largerView: {
+    [theme.fn.smallerThan("lg")]: { display: "none" },
+  },
+  smallerView: {
+    [theme.fn.largerThan("lg")]: { display: "none" },
+  },
 }));
 
 export function Hero(props: { onDemoButtonClick: () => void }) {
   const { classes } = useStyles();
   const [isVisible, visibleRef] = useVisibility(0);
+  const [isPopupActive, setIsPopupActive] = useState<boolean>(false);
   useEffect(() => {
     if (isVisible) {
       Mixpanel.track(AnalyticsEvent.UserScolled, { section: SectionType.hero });
     }
   }, [isVisible]);
-  return (
-    <div ref={visibleRef as any}>
-      <Container fluid={true}>
-        <div className={classes.inner}>
-          <div className={classes.content}>
-            <Title className={classes.title}>
-              Make your School <br></br>
-              <span className="rotator-wrapper ">
-                <span className="rotator">
-                  <span className={classes.highlight}>SMARTER</span>
-                  <span className={classes.highlight}>FUTURISTIC</span>
-                  <span className={classes.highlight}>STANDOUT</span>
-                </span>
-              </span>
-            </Title>
-            <Text color="dimmed" mt="md" className={classes.description}>
-              Vignam help schools to transform their classroom teaching, set up
-              their practical labs infrastructure and help school’s to digitise
-              their existing management practices
-            </Text>
+  function LargerDisplayView() {
+    return (
+     
 
-            <Button
-              radius="md"
-              size="xl"
-              className={classes.requestDemoButton}
-              onClick={props.onDemoButtonClick}
-            >
-              Request Demo
-            </Button>
-          </div>
-          <video autoPlay className={classes.image} loop muted>
-            <source
-              src="https://i.imgur.com/lB4kbfY.mp4"
-              type="video/mp4"
-            ></source>
-          </video>
+   <Group className={classes.largerView}>
+      <div className={classes.inner}>
+        <div className={classes.content}>
+          <Title className={classes.title}>
+            Make your School <br></br>
+            <span className="rotator-wrapper ">
+              <span className="rotator">
+                <span className={classes.highlight}>SMARTER</span>
+                <span className={classes.highlight}>DIGITAL</span>
+                <span className={classes.highlight}>STANDOUT</span>
+              </span>
+            </span>
+          </Title>
+          <Text color="dimmed" mt="md" className={classes.description}>
+            Vignam help schools to transform their classroom teaching, set up
+            their practical labs infrastructure and help school’s to digitise
+            their existing management practices
+          </Text>
         </div>
-      </Container>
-    </div>
+      </div>
+      <Hero1
+        onSubmitClick={(data) => {
+          Mixpanel.track(AnalyticsEvent. RequestDemoPannelClicked,{name: data.name , phone_number: data.mobileNumber});
+          SubmitFormData(data);
+        }}
+      />
+   </Group>
   );
 }
+
+
+function SmallerDisplayView() {
+  return (
+    <Group className={classes.smallerView}>
+       <div className={classes.inner}>
+        <div className={classes.content}>
+          <Title className={classes.title}>
+            Make your School <br></br>
+            <span className="rotator-wrapper ">
+              <span className="rotator">
+                <span className={classes.highlight}>SMARTER</span>
+                <span className={classes.highlight}>DIGITAL</span>
+                <span className={classes.highlight}>STANDOUT</span>
+              </span>
+            </span>
+          </Title>
+          <div style={{paddingTop:"20%"}}>
+          <Hero1
+          
+        onSubmitClick={(data) => {
+          Mixpanel.track(AnalyticsEvent.RequestDemoPannelClicked,{name: data.name , phone_number: data.mobileNumber} );
+
+          SubmitFormData(data);
+        }}
+       
+      />
+       </div>
+          <Text color="dimmed" mt="md" className={classes.description}>
+            Vignam help schools to transform their classroom teaching, set up
+            their practical labs infrastructure and help school’s to digitise
+            their existing management practices
+          </Text>
+        </div>
+      </div>
+     
+      
+      </Group>
+    
+  );
+}
+return(
+  <Container fluid={true} className={classes.heroContainer}>
+   < LargerDisplayView/>
+   < SmallerDisplayView/>
+
+  </Container>
+
+)
+}
+
