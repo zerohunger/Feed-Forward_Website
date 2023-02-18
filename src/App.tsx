@@ -35,7 +35,12 @@ export default function App() {
 
   useEffect(() => {
     setDomLoaded(true);
+    const timer = setTimeout(() => {
+      setShowDemoDialog(true);
+    }, 15000);
+    return () => clearTimeout(timer);
   }, []);
+  
 
   const renderFab = domLoaded ? (
     <a href={SocialMediaLink.whatsApp} target="__blank">
@@ -118,6 +123,9 @@ export default function App() {
         </Modal>
         {renderFab}
       </Container>
+      <div>
+      {showDemoDialog}
+    </div>
     </MantineProvider>
   );
 }
