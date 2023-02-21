@@ -163,8 +163,12 @@ const useStyles = createStyles((theme) => ({
 
 export function Hero(props: { onDemoButtonClick: () => void }) {
   const { classes } = useStyles();
+  const [showDemoDialog, setShowDemoDialog] = useState<boolean>(false);
+  const [domLoaded, setDomLoaded] = useState(false);
   const [isVisible, visibleRef] = useVisibility(0);
   const [isPopupActive, setIsPopupActive] = useState<boolean>(false);
+  const [taskInp, setTaskInp] = useState("")
+  
   useEffect(() => {
     if (isVisible) {
       Mixpanel.track(AnalyticsEvent.UserScolled, { section: SectionType.hero });
@@ -196,7 +200,9 @@ export function Hero(props: { onDemoButtonClick: () => void }) {
       </div>
       <Hero1
         onSubmitClick={(data) => {
-          Mixpanel.track(AnalyticsEvent. RequestDemoPannelClicked,{name: data.name , phone_number: data.mobileNumber});
+          Mixpanel.track(AnalyticsEvent.RequestDemoPannelClicked,{name: data.name , phone_number: data.mobileNumber});
+          props.onDemoButtonClick();
+        
           SubmitFormData(data);
         }}
       />
@@ -225,6 +231,7 @@ function SmallerDisplayView() {
           
         onSubmitClick={(data) => {
           Mixpanel.track(AnalyticsEvent.RequestDemoPannelClicked,{name: data.name , phone_number: data.mobileNumber} );
+          props.onDemoButtonClick(); 
 
           SubmitFormData(data);
         }}

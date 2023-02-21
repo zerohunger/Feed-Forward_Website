@@ -10,6 +10,8 @@ import {
   Center,
 } from "@mantine/core";
 import { useState } from "react";
+import { useRef } from "react";
+
 import {
   IconAt,
   IconPhoneCall,
@@ -79,7 +81,11 @@ const useStyles = createStyles((theme) => ({
 }));
 
 interface ARequestDemoDialogProps2 {
-  onSubmitClick: (data: { name: string; mobileNumber: string }) => void;
+  onSubmitClick: (data: {
+    name: string;
+    mobileNumber: string;
+  }) => void;
+  
 }
 
 export function Hero1(props: ARequestDemoDialogProps2) {
@@ -88,6 +94,11 @@ export function Hero1(props: ARequestDemoDialogProps2) {
   const [name, setName] = useState<string>();
 
   const [mobileNumber, setMobileNumber] = useState<string>();
+  const [value, setValue] = useState("");
+  const formRef = useRef(null);
+  
+  
+
 
   function DidSubmit() {
     let isValidName = name != null && name.length > 0;
@@ -100,11 +111,14 @@ export function Hero1(props: ARequestDemoDialogProps2) {
     if (isValidMobileNumber == false) {
       return;
     }
-
+  
+   
+   
     props.onSubmitClick({
       name: name!,
       mobileNumber: mobileNumber!,
     });
+    
   }
 
   //function LargerDisplayView() {
@@ -169,6 +183,7 @@ export function Hero1(props: ARequestDemoDialogProps2) {
               
                 <Button 
                   onClick={DidSubmit}
+                  ref={formRef}
                   style={{
                     backgroundColor: "#3174F3",
                     width: "80%",

@@ -5,6 +5,7 @@ import { AnalyticsEvent, SectionType } from "../helpers/MixpanelEvents.d";
 import { Mixpanel } from "../helpers/MixpanelHelper";
 import { useVisibility } from "../helpers/useVisiblity";
 import { Hero1 } from "./PannelForHero";
+import { SubmitFormData } from "../helpers/SubmitRequestDemo";
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
@@ -74,7 +75,7 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-export function PartnerWithVignam() {
+export function PartnerWithVignam(props: { onDemoButtonClick: () => void }) {
  const { classes, theme } = useStyles();
   const [isVisible, visibleRef] = useVisibility(0);
   useEffect(() => {
@@ -84,6 +85,7 @@ export function PartnerWithVignam() {
       });
     }
   }, [isVisible]);
+  function Display1(){
   return (
     <Container ref={visibleRef as any} fluid={true} className={classes.wrapper}>
         <Title className={classes.title}>
@@ -94,9 +96,12 @@ export function PartnerWithVignam() {
       </Text>
       <div className={classes.forpannel}>
       <Hero1
-       onSubmitClick={() => {
-        Mixpanel.track(AnalyticsEvent.DemoFormSubmitted);
-      }}/>
+        onSubmitClick={(data) => {
+          Mixpanel.track(AnalyticsEvent.RequestDemoPannelClicked,{name: data.name , phone_number: data.mobileNumber} );
+          props.onDemoButtonClick(); 
+
+          SubmitFormData(data);
+        }}/>
       </div>
   
 
@@ -104,3 +109,12 @@ export function PartnerWithVignam() {
     </Container>
   );
 }
+return(
+  <Container fluid={true} >
+    <Display1/>
+  
+  </Container>
+
+)
+}
+

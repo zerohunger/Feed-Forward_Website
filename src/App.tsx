@@ -3,6 +3,7 @@ import {
   MantineProvider,
   Modal,
   useMantineTheme,
+  createStyles,
 } from "@mantine/core";
 import { Hero } from "./components/Hero";
 import { AppHeader } from "./components/Header";
@@ -14,9 +15,11 @@ import { PartnerWithVignam } from "./components/PartnerWithVignam";
 import { Footer } from "./components/Footer";
 import { Offering } from "./components/Offering";
 import { RequestDemoDialog } from "./dialogs/RequestDemoDialog";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import  { useCallback, useEffect } from "react";
 import { Mixpanel } from "./helpers/MixpanelHelper";
 import { Hero1 } from "./components/PannelForHero";
+import { RequestSubmitDialog } from "./dialogs/RequestSubmitDialog";
 import {
   AnalyticsEvent,
   RequestDemoLocation,
@@ -26,18 +29,27 @@ import { IconBrandWhatsapp } from "@tabler/icons";
 import { SocialMediaLink } from "./@types/DataTypes.d";
 import axios from "axios";
 import { SubmitFormData } from "./helpers/SubmitRequestDemo";
+import React, { KeyboardEvent } from "react";
+
 
 
 export default function App() {
+  
   const [showDemoDialog, setShowDemoDialog] = useState<boolean>(false);
+  const [showSubmitDialog, setShowSubmitDialog] = useState<boolean>(false);
   const [domLoaded, setDomLoaded] = useState(false);
   const theme = useMantineTheme();
+  
 
+
+  
+
+  
   useEffect(() => {
     setDomLoaded(true);
     const timer = setTimeout(() => {
       setShowDemoDialog(true);
-    }, 15000);
+    }, 10000);
     return () => clearTimeout(timer);
   }, []);
   
@@ -96,7 +108,7 @@ export default function App() {
             Mixpanel.track(AnalyticsEvent.DemoButtonClicked, {
               location: RequestDemoLocation.hero,
             });
-            setShowDemoDialog(true);
+            setShowSubmitDialog(true);
           }}
         />
         <Offering />
@@ -106,8 +118,14 @@ export default function App() {
        
         <InstitueFaith />
         <Features />
-        <PartnerWithVignam/>
+        <PartnerWithVignam  onDemoButtonClick={() => {
+            Mixpanel.track(AnalyticsEvent.DemoButtonClicked, {
+              location: RequestDemoLocation.hero,
+            });
+            setShowSubmitDialog(true);
+          }}/>
         <Footer />
+     
 
         <Modal
           centered
@@ -118,13 +136,26 @@ export default function App() {
            onSubmitClick={(data) => {
             Mixpanel.track(AnalyticsEvent.DemoFormSubmitted);
             SubmitFormData(data);
+          
             setShowDemoDialog(false);
           }}/>
         </Modal>
+        <Modal
+          centered
+          opened={showSubmitDialog}
+          onClose={() => setShowSubmitDialog(false)}
+        
+        >
+          <RequestSubmitDialog />
+        </Modal>
         {renderFab}
       </Container>
-      <div>
+      
+      <div >
+      
+
       {showDemoDialog}
+      {showSubmitDialog }
     </div>
     </MantineProvider>
   );

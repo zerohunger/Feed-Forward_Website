@@ -9,14 +9,17 @@ import {
   Title,
   Button,
   Image,
+  
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
+
 
 const HEADER_HEIGHT = 60;
 
 const useStyles = createStyles((theme) => ({
   root: {
-    position: "relative",
+    paddingTop: "5px",
+    position: "fixed",
     zIndex: 1,
 
     [theme.fn.largerThan("sm")]: {
@@ -123,6 +126,7 @@ const useStyles = createStyles((theme) => ({
 
 export function AppHeader(props: { onDemoButtonClick: () => void }) {
   const [opened, { toggle, close }] = useDisclosure(false);
+  
 
   const options: { label: string; isDemoButton: boolean }[] = [
     {
@@ -210,6 +214,7 @@ export function AppHeader(props: { onDemoButtonClick: () => void }) {
             </Paper>
           )}
         </Transition>
+       
       </Container>
     </Header>
   );
