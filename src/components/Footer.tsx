@@ -21,6 +21,7 @@ import {
   SocialMediaType,
 } from "../helpers/MixpanelEvents.d";
 import { Mixpanel } from "../helpers/MixpanelHelper";
+import { AllBlogsPage } from "../Pages/AllBlogsPage";
 
 const useStyles = createStyles((theme) => ({
   footer: {
@@ -265,6 +266,18 @@ const DATA: {
         label: "Privacy Policy",
         onClick: () => {
           Mixpanel.track(AnalyticsEvent.PrivacyPolicyClicked);
+        },
+      },
+    ],
+  },
+  {
+    title: "Vignam Blogs",
+    links: [
+      {
+        label: "Click to Visit Blog Page",
+        onClick: () => {
+          window.open("/blogs","_blank")
+          
         },
       },
     ],

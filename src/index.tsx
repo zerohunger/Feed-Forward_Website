@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import App from "./App";
+import App from "./Home";
+import AppV from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { Mixpanel } from "./helpers/MixpanelHelper";
 import { AnalyticsEvent } from "./helpers/MixpanelEvents.d";
@@ -20,7 +21,7 @@ const Index = ({ children }: any) => {
 root.render(
   <React.StrictMode>
     <Index>
-      <App />
+      <AppV />
     </Index>
   </React.StrictMode>
 );
@@ -29,3 +30,4 @@ root.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+
