@@ -66,7 +66,9 @@ const useStyles = createStyles((theme) => ({
   image: {
     maxWidth: "100%",
     height: "auto",
+    background: "red",
     objectFit: "cover",
+    padding:"10px"
   },
 }));
 
@@ -152,7 +154,7 @@ const imageContainerVariants = {
   },
 };
 
-export function Hero() {
+export function Heroo() {
   const { classes } = useStyles();
   const [domLoaded, setDomLoaded] = useState(false);
 
@@ -201,6 +203,7 @@ export function Hero() {
       animate={domLoaded ? "visible" : "hidden"}
     >
       <Container fluid={true}>
+        <h1 style={{display: "flex", alignItems:"center", justifyContent:"center", fontSize:"50px", color:"purple"}}>SYSTEMS THINKING AND ITS APPLICATION IN OUR PROJECT.</h1>
         <Group className={classes.inner}>
           <motion.div className={classes.content} variants={titleVariants}>
             <Title className={classes.title}>

@@ -27,7 +27,7 @@ const useStyles = createStyles((theme) => ({
          justifyContent: "center",
     },
     highlight: {
-      color: "#3174F3",
+      color: "#D16587",
       },
     }));
 
@@ -75,16 +75,16 @@ export function RequestDemoDialog(props: ARequestDemoDialogProps) {
     <Stack>
       <div className={classes.image}>
           <Image
-            height={40}
-            width={40}
+            height={100}
+            width={100}
             
-            src={require("../assets/images/LOGO.png")}
+            src={require("../assets/images/LOGO3.png")}
           ></Image>
           </div>
           <div>
   <Title className={classes.title}>
-    Transform Your School with <span className={classes.highlight}>Vignam</span> Book a {" "}
-    <span className={classes.highlight}>Free Demo</span> Today!
+    For any enquiry about <span className={classes.highlight}>Volunteering</span> or {" "}
+    <span className={classes.highlight}>Food Donation Drives </span>Contact {" "} <span className={classes.highlight}> Team Zero Hunger </span>Today!
   </Title> 
 </div> 
        
@@ -111,9 +111,9 @@ export function RequestDemoDialog(props: ARequestDemoDialogProps) {
         fullWidth
         onClick={DidSubmit}
       
-        style={{ backgroundColor: "#3174F3" }}
+        style={{ backgroundColor: "#D16587" }}
       >
-        Book free Demo
+       Get In Touch With Us
       </Button>
     </Stack>
   );

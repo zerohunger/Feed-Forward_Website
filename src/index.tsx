@@ -4,17 +4,14 @@ import "./index.css";
 import App from "./Home";
 import AppV from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { Mixpanel } from "./helpers/MixpanelHelper";
-import { AnalyticsEvent } from "./helpers/MixpanelEvents.d";
+
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 
 const Index = ({ children }: any) => {
-  useEffect(() => {
-    Mixpanel.track(AnalyticsEvent.LandingPageAccessed);
-  }, []);
+  
   return <div> {children}</div>;
 };
 

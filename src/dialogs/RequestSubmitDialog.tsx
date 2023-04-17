@@ -55,13 +55,13 @@ export function RequestSubmitDialog() {
        <div>
         <div style={{paddingTop:"2%"}}>
 <Title className={classes.title}>
- Thanks For Requesting the {" "}
- <span className={classes.highlight}>Free Demo.</span>
+ Thanks For  Contacting Team  {" "}
+ <span className={classes.highlight}>ZeroHunger</span>
 </Title> 
 </div>
 <div style={{paddingTop:"5%"}}>
 <Title className={classes.title}>
-Our Team Will Get Back To {" "}
+Please Enter Your Details And We Will Get Back To 
 <span className={classes.highlight}>You Soon...</span>
 </Title> 
 </div>

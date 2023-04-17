@@ -15,16 +15,11 @@ import {
   IconBrandLinkedin,
 } from "@tabler/icons";
 import { SocialMediaLink } from "../@types/DataTypes.d";
-import {
-  AnalyticsEvent,
-  ContactUsOptionType,
-  SocialMediaType,
-} from "../helpers/MixpanelEvents.d";
-import { Mixpanel } from "../helpers/MixpanelHelper";
 import { AllBlogsPage } from "../Pages/AllBlogsPage";
 
 const useStyles = createStyles((theme) => ({
   footer: {
+    backgroundColor:"#ADD8E6",
     paddingTop: theme.spacing.xl * 2,
     paddingBottom: theme.spacing.xl,
     borderTop: `1px solid ${
@@ -91,7 +86,7 @@ const useStyles = createStyles((theme) => ({
 
   link: {
     display: "block",
-    color: theme.colors.gray[6],
+    color: "black",
     fontSize: theme.fontSizes.sm,
     paddingTop: 3,
     paddingBottom: 3,
@@ -106,7 +101,7 @@ const useStyles = createStyles((theme) => ({
     fontWeight: 700,
     fontFamily: `Greycliff CF, ${theme.fontFamily}`,
     marginBottom: theme.spacing.xs / 2,
-    color: theme.black,
+    color: "#9F2B68",
   },
 
   afterFooter: {
@@ -164,33 +159,31 @@ export function Footer() {
         <div className={classes.logo}>
           <Group>
             <Image
-              height={50}
-              width={50}
-              src={require("../assets/images/LOGO.png")}
+              height={100}
+              width={100}
+              src={require("../assets/images/LOGO3.png")}
             ></Image>
-            <Title style={{ fontSize: 30, fontWeight: 900, color: "#3174F3" }}>
-              VIGNAM
+            <Title style={{ fontSize: 30, fontWeight: 900, color: "#9F2B68" }}>
+            ZERO HUNGER
             </Title>
           </Group>
-          <Text color="dimmed" className={classes.description}>
-            Transform your school with digital solutions provided by VIGNAM.
+          <Text color="black" className={classes.description}>
+            Join the Communtiy and Let's Protect the Needy and Underprivileged Children of India
           </Text>
         </div>
         <div className={classes.groups}>{groups}</div>
       </Container>
 
       <Container fluid={true} className={classes.afterFooter}>
-        <Text color="dimmed" size="sm">
-          © 2022 Vignam Labs PVT Limited. All rights reserved.
+        <Text color="black" size="sm">
+          © 2023 Team Zero Hunger
         </Text>
 
         <Group spacing={0} className={classes.social} position="right" noWrap>
           <ActionIcon
             size="lg"
             onClick={() => {
-              Mixpanel.track(AnalyticsEvent.SocialMediaClicked, {
-                type: SocialMediaType.discord,
-              });
+             
               window.open(SocialMediaLink.discord, "__blank");
             }}
           >
@@ -199,9 +192,7 @@ export function Footer() {
           <ActionIcon
             size="lg"
             onClick={() => {
-              Mixpanel.track(AnalyticsEvent.SocialMediaClicked, {
-                type: SocialMediaType.youtube,
-              });
+            
               window.open(SocialMediaLink.youtube, "__blank");
             }}
           >
@@ -211,9 +202,7 @@ export function Footer() {
           <ActionIcon
             size="lg"
             onClick={() => {
-              Mixpanel.track(AnalyticsEvent.SocialMediaClicked, {
-                type: SocialMediaType.twitter,
-              });
+             
               window.open(SocialMediaLink.twitter, "__blank");
             }}
           >
@@ -223,9 +212,7 @@ export function Footer() {
           <ActionIcon
             size="lg"
             onClick={() => {
-              Mixpanel.track(AnalyticsEvent.SocialMediaClicked, {
-                type: SocialMediaType.insta,
-              });
+            
               window.open(SocialMediaLink.instagram, "__blank");
             }}
           >
@@ -235,9 +222,7 @@ export function Footer() {
           <ActionIcon
             size="lg"
             onClick={() => {
-              Mixpanel.track(AnalyticsEvent.SocialMediaClicked, {
-                type: SocialMediaType.linkedIn,
-              });
+             
               window.open(SocialMediaLink.linkedIn, "__blank");
             }}
           >
@@ -259,25 +244,7 @@ const DATA: {
       {
         label: "About Us",
         onClick: () => {
-          Mixpanel.track(AnalyticsEvent.AboutUsClicked);
-        },
-      },
-      {
-        label: "Privacy Policy",
-        onClick: () => {
-          Mixpanel.track(AnalyticsEvent.PrivacyPolicyClicked);
-        },
-      },
-    ],
-  },
-  {
-    title: "Vignam Blogs",
-    links: [
-      {
-        label: "Click to Visit Blog Page",
-        onClick: () => {
-          window.open("/blogs","_blank")
-          
+         
         },
       },
     ],
@@ -288,46 +255,37 @@ const DATA: {
       {
         label: "Discord",
         onClick: () => {
-          Mixpanel.track(AnalyticsEvent.SocialMediaClicked, {
-            type: SocialMediaType.discord,
-          });
-          window.open(SocialMediaLink.discord, "__blank");
+          
+         
+          
         },
       },
       {
         label: "Twitter",
         onClick: () => {
-          Mixpanel.track(AnalyticsEvent.SocialMediaClicked, {
-            type: SocialMediaType.twitter,
-          });
-          window.open(SocialMediaLink.twitter, "__blank");
+         
+       
         },
       },
       {
         label: "YouTube",
         onClick: () => {
-          Mixpanel.track(AnalyticsEvent.SocialMediaClicked, {
-            type: SocialMediaType.youtube,
-          });
-          window.open(SocialMediaLink.youtube, "__blank");
+
+         
         },
       },
       {
         label: "Instagram",
         onClick: () => {
-          Mixpanel.track(AnalyticsEvent.SocialMediaClicked, {
-            type: SocialMediaType.insta,
-          });
-          window.open(SocialMediaLink.instagram, "__blank");
+         
+         
         },
       },
       {
         label: "LinkedIn",
         onClick: () => {
-          Mixpanel.track(AnalyticsEvent.SocialMediaClicked, {
-            type: SocialMediaType.linkedIn,
-          });
-          window.open(SocialMediaLink.linkedIn, "__blank");
+          
+        
         },
       },
     ],
@@ -337,38 +295,23 @@ const DATA: {
     links: [
       {
         label:
-          "28 , SSG Majesty Mall , Plot No. 2 Road No. 43, Guru Harikishan Marg,Pitam Pura,Delhi 10034",
+          "Team Zero Hunger Founders are :       Mayank, Milind, Tanush and Kashish from '2021 Batch DSAI IIIT DHARWAD'.",
         onClick: () => {
-          Mixpanel.track(AnalyticsEvent.SocialMediaClicked, {
-            type: ContactUsOptionType.address,
-          });
+         
+        },
+      },
+      
+      {
+        label: "+91-8879818749",
+        onClick: () => {
+         
         },
       },
       {
-        label: "+91-9650488030",
+        label: "ZeroHunger@gmail.com",
         onClick: () => {
-          Mixpanel.track(AnalyticsEvent.SocialMediaClicked, {
-            type: ContactUsOptionType.phoneNumber,
-            phoneNumber: "+91-9650488030",
-          });
-        },
-      },
-      {
-        label: "+91-9997364220",
-        onClick: () => {
-          Mixpanel.track(AnalyticsEvent.SocialMediaClicked, {
-            type: ContactUsOptionType.phoneNumber,
-            phoneNumber: "+91-9997364220",
-          });
-        },
-      },
-      {
-        label: "901.vignam@gmail.com",
-        onClick: () => {
-          Mixpanel.track(AnalyticsEvent.SocialMediaClicked, {
-            type: ContactUsOptionType.email,
-          });
-          window.open("mailto:901.vignam@gmail.com");
+         
+        
         },
       },
     ],

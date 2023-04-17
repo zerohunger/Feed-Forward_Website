@@ -1,77 +1,31 @@
-import {
-  createStyles,
-  Header,
-  Container,
-  Group,
-  Burger,
-  Paper,
-  Transition,
-  Title,
-  Button,
-  Image,
-  
-} from "@mantine/core";
+import { createStyles, Header, Container, Group, Title, Button, Image, Input, Text, Popover } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
+import { useState } from "react";
 
-
-const HEADER_HEIGHT = 60;
+const HEADER_HEIGHT = 100;
 
 const useStyles = createStyles((theme) => ({
   root: {
-    paddingTop: "5px",
-    position: "fixed",
-    zIndex: 1,
-
-    [theme.fn.largerThan("sm")]: {
-      paddingLeft: 50,
-      paddingRight: 50,
-    },
+    backgroundColor: "#ADD8E6",
   },
-
-  dropdown: {
-    position: "absolute",
-    top: HEADER_HEIGHT,
-    left: 0,
-    right: 0,
-    zIndex: 0,
-    borderTopRightRadius: 0,
-    borderTopLeftRadius: 0,
-    borderTopWidth: 0,
-    overflow: "hidden",
-
-    display: "flex",
-    flexDirection: "column",
-    padding: 20,
-
-    [theme.fn.largerThan("sm")]: {
-      display: "none",
-    },
-  },
-
   header: {
     display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
     height: "100%",
   },
-
   headerInnerContainer: {
     display: "flex",
     justifyContent: "space-between",
   },
-
   links: {
     [theme.fn.smallerThan("sm")]: {
       display: "none",
     },
   },
-
-  burger: {
-    [theme.fn.largerThan("sm")]: {
-      display: "none",
-    },
+  image2: {
+    borderRadius: "50%",
+    height: "100px",
+    width: "100px",
   },
-
   link: {
     display: "block",
     lineHeight: 1,
@@ -91,44 +45,58 @@ const useStyles = createStyles((theme) => ({
       padding: theme.spacing.md,
     },
   },
-
   optionButton: {
     color: theme.colors.dark[3],
   },
-
   demoButton: {
     color: theme.white,
     borderRadius: 8,
-    minHeight: "46px",
+    minHeight: "50px",
     textAlign: "center",
-    backgroundColor: "#3174F3",
+    backgroundColor: "#9F2B68",
     fontWeight: 900,
   },
-  navBarButton: {
-    fontWeight: 500,
-    color: "black",
-
+  highlight: {
+    fontWeight: 700,
+    color: "#D16587",
     "&:hover": {
-      color: "#3174F3",
+      color: "#D16587",
       backgroundColor: "transparent",
     },
   },
-
-  highlight: {
-    fontWeight: 700,
-    color: "#3174F3",
-    "&:hover": {
-      color: "#3174F3",
-      backgroundColor: "transparent",
+  searchBar: {
+    width: "200px",
+    marginRight: "10px",
+    [theme.fn.smallerThan("sm")]: {
+      display: "none",
     },
   },
 }));
 
+function SearchBar() {
+  const { classes } = useStyles();
+  return (
+    <Input
+      className={classes.searchBar}
+      placeholder="Search"
+      variant="filled"
+      color="gray"
+    />
+  );
+}
+
 export function AppHeader(props: { onDemoButtonClick: () => void }) {
-  const [opened, { toggle, close }] = useDisclosure(false);
-  
+  const [opened, setOpened] = useState(false);
 
   const options: { label: string; isDemoButton: boolean }[] = [
+    {
+      label: "Option 1",
+      isDemoButton: false,
+    },
+    {
+      label: "Option 2",
+      isDemoButton: false,
+    },
     {
       label: "Request Demo",
       isDemoButton: true,
@@ -137,38 +105,22 @@ export function AppHeader(props: { onDemoButtonClick: () => void }) {
 
   const { classes, cx } = useStyles();
 
-  function ForStudentButton() {
-    return (
-      <Button
-        variant="subtle"
-        className={classes.navBarButton}
-        onClick={() => {
-          window.location.href = "https://app.vignamlabs.com";
-        }}
-      >
-        For Students
-      </Button>
-    );
-  }
-
-  function ForSchoolButton() {
-    return (
-      <Button variant="subtle" className={classes.highlight}>
-        For School
-      </Button>
-    );
-  }
-
   function Items() {
     return (
       <>
-        <ForStudentButton />
-        <ForSchoolButton />
+        <SearchBar />
         <Button
           className={classes.demoButton}
           onClick={props.onDemoButtonClick}
         >
-          Request Demo
+          Contact Us
+        </Button>
+        <Button
+          variant="outline"
+          className={classes.optionButton}
+          onClick={() => setOpened((prev) => !prev)}
+        >
+          More options
         </Button>
       </>
     );
@@ -181,40 +133,43 @@ export function AppHeader(props: { onDemoButtonClick: () => void }) {
         fluid={true}
         className={classes.headerInnerContainer}
       >
-        <Burger
-          opened={opened}
-          onClick={toggle}
-          className={classes.burger}
-          size="sm"
-        />
-        <Group>
+        <Group classNames={classes.image2} style={{ borderRadius: "50%" }}>
           <Image
-            height={40}
-            width={40}
-            src={require("../assets/images/LOGO.png")}
-          ></Image>
-          <Title>VIGNAM</Title>
+            height="90px"
+            width="90px"
+            src={require("../assets/images/LOGO3.png")}
+          />
+          <Title style={{ fontSize: "55px", color: "#9F2B68" }}>
+            ZERO HUNGER
+          </Title>
         </Group>
 
         <Group position="apart">
           <Group spacing={5} className={classes.links}>
             <Items />
+            {opened && (
+              <Popover
+                opened={opened}
+                onClose={() => setOpened(false)}
+                withArrow
+                position="bottom"
+                transition="slide-down"
+              >
+                <div style={{ padding: "10px" }}>
+                  {options.map((option) => (
+                    <Text
+                      key={option.label}
+                      size="sm"
+                      className={option.isDemoButton ? classes.highlight : ""}
+                    >
+                      {option.label}
+                    </Text>
+                  ))}
+                </div>
+              </Popover>
+            )}
           </Group>
         </Group>
-
-        <Transition transition="scale-y" duration={200} mounted={opened}>
-          {(styles) => (
-            <Paper
-              className={classes.dropdown}
-              withBorder
-              shadow="xl"
-              style={styles}
-            >
-              <Items />
-            </Paper>
-          )}
-        </Transition>
-       
       </Container>
     </Header>
   );

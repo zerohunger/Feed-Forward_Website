@@ -100,7 +100,7 @@ body {
 
 .rotator-wrapper span span {
   position: absolute;
-  opacity: 0;
+
   animation: rotateWord 6s linear infinite 6s;
 }
 
